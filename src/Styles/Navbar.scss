@@ -1,0 +1,14 @@
+
+.navbar {
+  position: sticky;
+  top: 0;
+
+  &.visible {
+    transition: 0.3s;
+  }
+
+  &.hidden {
+    transition: 0.3s;
+    transform: translateY(-100%);
+  }
+}

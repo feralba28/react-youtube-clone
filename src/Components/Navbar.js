@@ -16,7 +16,7 @@ function Navbar() {
       const newScrollY = window.scrollY
 
       if (oldScrollY <= newScrollY) {
-        newScrollY > 180 ? setIsNavbar(false) : setIsNavbar(true)
+        newScrollY >= 100 ? setIsNavbar(false) : setIsNavbar(true)
       } else {
         setIsNavbar(true)
       }

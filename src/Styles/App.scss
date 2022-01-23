@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import './BottomNavigation.scss';
+@import './Chip.scss';
+@import './HomePage.scss';
 @import './Navbar.scss';
 
 * {
@@ -8,4 +10,16 @@
 
 .min-height-100vh {
   min-height: 100vh;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.overflow-scrollx::-webkit-scrollbar {
+  display: none;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
 }

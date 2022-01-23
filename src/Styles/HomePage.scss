@@ -1,8 +1,7 @@
 
-.navbar {
+.homepage-choice-chip-bar {
   position: sticky;
-  top: 0;
-  z-index: 1;
+  top: 49px;
 
   &.visible {
     transition: 0.3s;
@@ -10,6 +9,6 @@
 
   &.hidden {
     transition: 0.3s;
-    transform: translateY(-100%);
+    transform: translateY(-200%);
   }
 }

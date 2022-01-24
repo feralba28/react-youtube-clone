@@ -1,10 +1,10 @@
 import { DateTime } from 'luxon'
-import fromISODurationToString from '../Helpers/fromISODurationToString'
+import fromISOToHHMMSS from '../Helpers/fromISOToHHMMSS'
 import EllipsisIcon from '../Assets/ellipsis.svg'
 import UserIcon from '../Assets/user.svg'
 
 function VideoPreview({ item }) {
-  const duration = fromISODurationToString(item.contentDetails.duration)
+  const duration = fromISOToHHMMSS(item.contentDetails.duration)
 
   const viewCount = Number(item.statistics.viewCount).toLocaleString('us')
   const viewCountText = `${viewCount} visualizaciones`

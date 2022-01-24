@@ -3,6 +3,8 @@
 @import './Chip.scss';
 @import './HomePage.scss';
 @import './Navbar.scss';
+@import './VideoPreview.scss';
+
 
 * {
   font-family: 'Roboto', sans-serif;
@@ -22,4 +24,8 @@
 
 .white-space-nowrap {
   white-space: nowrap;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
 }

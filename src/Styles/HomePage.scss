@@ -2,6 +2,7 @@
 .homepage-choice-chip-bar {
   position: sticky;
   top: 49px;
+  z-index: 3;
 
   &.visible {
     transition: 0.3s;

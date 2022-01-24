@@ -1,11 +1,10 @@
+import HomePage from './Pages/HomePage/HomePage'
 import './Styles/App.scss'
 
 function App() {
 
   return (
-    <div>
-      <h1>Hello world!!!</h1>
-    </div>
+    <HomePage />
   )
 }
 

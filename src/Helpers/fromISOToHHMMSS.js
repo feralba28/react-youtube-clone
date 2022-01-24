@@ -1,6 +1,6 @@
 import { Duration } from 'luxon'
 
-function fromISODurationToString(isoDuration) {
+function fromISOToHHMMSS(isoDuration) {
   const { hours, minutes, seconds } = Duration.fromISO(isoDuration).toObject()
 
   const duration = `
@@ -12,4 +12,4 @@ function fromISODurationToString(isoDuration) {
   return duration
 }
 
-export default fromISODurationToString
+export default fromISOToHHMMSS

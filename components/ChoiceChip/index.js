@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Chip from './Chip'
+import Chip from '../Chip'
 
 function ChoiceChip({ options, handleSelected }) {
   const [chips, setChips] = useState([])
@@ -30,16 +30,18 @@ function ChoiceChip({ options, handleSelected }) {
   }
 
   return (
-    <div className="d-flex p-1 bg-white overflow-scrollx">
-      {chips.map((item) => (
-        <Chip
-          key={item.id}
-          text={item.option}
-          isSelected={item.isSelected}
-          onClick={() => handleOnSelect(item)}
-        />
-      ))}
-    </div>
+    <>
+      <div className="d-flex p-1 bg-white overflow-scrollx">
+        {chips.map((item) => (
+          <Chip
+            key={item.id}
+            text={item.option}
+            isSelected={item.isSelected}
+            onClick={() => handleOnSelect(item)}
+          />
+        ))}
+      </div>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import styles from './styles'
-import fromISOToHHMMSS from '../../helpers/fromISOToHHMMSS'
+import fromISOToHHMMSS from '../../utils/fromISOToHHMMSS'
 // import EllipsisIcon from '/ellipsis.svg'
 // import UserIcon from '/user.svg'
 

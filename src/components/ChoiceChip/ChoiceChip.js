@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Chip from '../Chip'
+import Chip from '../Chip/Chip'
 
 function ChoiceChip({ options, handleSelected }) {
   const [chips, setChips] = useState([])

@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import WebsiteLayout from '../layouts/WebsiteLayout'
-import ChoiceCategoryBar from '../blocks/ChoiceCategoryBar'
-import suggestionList from '../public/Data/suggestion'
-import searchResultItemsResponse from '../public/Data/searchResult'
-import VideoPreview from '../Components/VideoPreview'
-import AppLayout from '../layouts/AppLayout'
+import ChoiceCategoryBar from '../blocks/ChoiceCategoryBar/ChoiceCategoryBar'
+import suggestionList from '/public/data/suggestion'
+import searchResultItemsResponse from '/public/data/searchResult'
+import VideoPreview from '../Components/VideoPreview/VideoPreview'
 
 function Home() {
   const [suggestions, setSuggestions] = useState([])
@@ -35,18 +34,16 @@ function Home() {
         ></link>
       </Head>
 
-      <AppLayout>
-        <WebsiteLayout>
-          <ChoiceCategoryBar
-            categories={suggestions}
-            setSelectedCategory={handleSelectCategory}
-          />
+      <WebsiteLayout>
+        <ChoiceCategoryBar
+          categories={suggestions}
+          setSelectedCategory={handleSelectCategory}
+        />
 
-          {searchResultItems.map((item, index) => (
-            <VideoPreview item={item} key={index} />
-          ))}
-        </WebsiteLayout>
-      </AppLayout>
+        {searchResultItems.map((item, index) => (
+          <VideoPreview item={item} key={index} />
+        ))}
+      </WebsiteLayout>
     </>
   )
 }

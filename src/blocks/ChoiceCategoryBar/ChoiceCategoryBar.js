@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import ChoiceChip from '../../components/ChoiceChip'
+import ChoiceChip from '../../components/ChoiceChip/ChoiceChip'
 import styles from './styles'
 
 function ChoiceCategoryBar({ categories, setSelectedCategory }) {

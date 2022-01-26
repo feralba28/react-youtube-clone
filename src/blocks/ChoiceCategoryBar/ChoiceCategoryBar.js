@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import ChoiceChip from '../../Components/ChoiceChip'
+import ChoiceChip from '../../components/ChoiceChip/ChoiceChip'
+import styles from './styles'
 
 function ChoiceCategoryBar({ categories, setSelectedCategory }) {
   const [isChipsBar, setIsChipsBar] = useState(true)
@@ -42,6 +43,7 @@ function ChoiceCategoryBar({ categories, setSelectedCategory }) {
   }
 
   return (
+    <>
     <div
       className={`row bg-white p-none border-bottom br-light-grey homepage-choice-chip-bar ${
         isChipsBar ? 'visible' : 'hidden'
@@ -49,6 +51,9 @@ function ChoiceCategoryBar({ categories, setSelectedCategory }) {
     >
       <ChoiceChip options={chipOptions} handleSelected={handleSelected} />
     </div>
+
+    <style jsx>{styles}</style>
+    </>
   )
 }
 

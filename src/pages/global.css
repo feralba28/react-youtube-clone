@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
-@import './BottomNavigation.scss';
-@import './Chip.scss';
-@import './HomePage.scss';
-@import './Navbar.scss';
-@import './VideoPreview.scss';
-
 
 * {
   font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  color: red;
 }
 
 .min-height-100vh {

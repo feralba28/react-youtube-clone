@@ -1,5 +1,5 @@
-import BottomNavigation from '../Components/BottomNavigation'
-import Navbar from '../Components/Navbar'
+import BottomNavigation from '../components/BottomNavigation/BottomNavigation'
+import Navbar from '../components/Navbar/Navbar'
 
 function WebsiteLayout({ children }) {
   return (

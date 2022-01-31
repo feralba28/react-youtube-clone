@@ -16,8 +16,11 @@ function Home() {
   const [searchRequest, setSearchRequest] = useState(
     getSearchs({ keyword: '' })
   )
-  const {isLoading, response: {data: searchResponse}, isError} =
-    useFetch<SearchResponse>(searchRequest)
+  const {
+    isLoading,
+    response: { data: searchResponse },
+    isError,
+  } = useFetch<SearchResponse>(searchRequest)
 
   useEffect(() => {
     if (keyword) {
@@ -33,7 +36,12 @@ function Home() {
       </Head>
 
       <WebsiteLayout setKeyword={setKeyword}>
-        {isLoading && [1, 2, 3].map((i) => <VideoPreviewLoader key={i} />)}
+        {isLoading &&
+          [1, 2, 3].map((i) => (
+            <div className="d-flex" key={i}>
+              <VideoPreviewLoader />
+            </div>
+          ))}
 
         {searchResponse &&
           searchResponse.items.map((item) => (

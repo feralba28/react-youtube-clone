@@ -4,7 +4,15 @@ const styles = css`
   .searchbar {
     position: fixed;
     top: 0;
+    z-index: 5;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
     z-index: 3;
+    min-height: 100vh;
+    background: rgba(0,0,0,0.8)
   }
 
   input {

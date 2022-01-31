@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react'
+import Search from '../Icons/Search'
+import User from '../Icons/User'
+import YouTube from '../Icons/YouTube'
 import styles from './styles'
 
-function Navbar() {
+function Navbar({ toggleSearchBar }) {
   const [isNavbar, setIsNavbar] = useState(true)
   const [oldScrollY, setOldScrollY] = useState(0)
-
-  const youtubeLogo = '/images/youtube.svg'
-  const searchIcon = '/images/search.svg'
-  const userIcon = '/images/user.svg'
-  const youtubeLogoAlt = 'Youtube'
-  const searchIconAlt = 'Buscar'
-  const userIconAlt = 'Usuario'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,11 +34,15 @@ function Navbar() {
         }`}
       >
         <div className="col p-2">
-          <img src={youtubeLogo} alt={youtubeLogoAlt} className="vertical-align-middle"/>
+          <YouTube className="vertical-align-middle" />
         </div>
         <div className="col p-none d-flex">
-          <img className="p-2" src={searchIcon} alt={searchIconAlt}/>
-          <img className="p-2" src={userIcon} alt={userIconAlt}/>
+          <div className="col p-2" onClick={toggleSearchBar}>
+            <Search className="vertical-align-middle" fill="#606060" />
+          </div>
+          <div className="col p-2">
+            <User className="vertical-align-middle" fill="#606060" />
+          </div>
         </div>
       </div>
 

@@ -5,7 +5,7 @@ function fromISOToHHMMSS(isoDuration) {
 
   const duration = `
     ${hours ? hours + ':' : ''}${
-    minutes ? (minutes < 10 ? '0' + minutes : minutes + ':') : ''}${
+    minutes ? (minutes < 10 ? '0' + minutes + ":" : minutes + ':') : ''}${
     seconds ? (seconds < 10 ? '0' + seconds : seconds) : ''}
   `
 

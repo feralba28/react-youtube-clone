@@ -1,6 +1,7 @@
 function getSearchs({ keyword }) {
   return {
     method: 'get',
+    baseURL: process.env.NEXT_PUBLIC_YOUTUBE_API_BASE_URL,
     url: '/search',
     params: {
       q: keyword,

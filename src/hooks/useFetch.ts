@@ -5,13 +5,11 @@ interface FetchData<T> {
   data: T | null
 }
 
-const http = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_YOUTUBE_API_BASE_URL
-})
-
-function useFetch<dataType>(
-  props: object
-): {isLoading: boolean, response: FetchData<dataType>, isError: boolean} {
+function useFetch<dataType>(props: object): {
+  isLoading: boolean
+  response: FetchData<dataType>
+  isError: boolean
+} {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const [isError, setIsError] = useState<boolean>(false)
@@ -22,7 +20,8 @@ function useFetch<dataType>(
 
   useEffect(() => {
     setIsLoading(true)
-    http(props)
+    axios
+      .request(props)
       .then((res) => {
         setIsError(false)
         setResponse(res)
@@ -37,7 +36,7 @@ function useFetch<dataType>(
   return {
     isLoading,
     response,
-    isError
+    isError,
   }
 }
 

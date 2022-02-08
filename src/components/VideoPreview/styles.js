@@ -8,7 +8,7 @@ const styles = css`
     left: 0;
     right: 0;
     width: 100%;
-    padding-bottom: 56.25%; // 16:9 aspect ratio
+    padding-bottom: 56.25%;
     margin: auto;
     overflow: hidden;
   }

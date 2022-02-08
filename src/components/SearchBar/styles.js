@@ -4,13 +4,13 @@ const styles = css`
   .searchbar {
     position: fixed;
     top: 0;
-    z-index: 5;
+    z-index: 10;
   }
 
   .overlay {
     position: fixed;
     top: 0;
-    z-index: 3;
+    z-index: 7;
     min-height: 100vh;
     background: rgba(0,0,0,0.8)
   }

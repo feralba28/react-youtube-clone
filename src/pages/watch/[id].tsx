@@ -15,7 +15,7 @@ import Comments from '../../blocks/Watch/Comments'
 
 import getVideos from '../../requests/getVideos'
 import VideoDetail from '../../types/VideoDetail'
-import styles from './styles'
+import styles from '../../styles/watch'
 
 function Watch<NextPage>(props: { item: VideoDetail }) {
   const { item } = props

@@ -9,9 +9,9 @@ function FixedNavbar({ toggleSearchBar }) {
     <>
       <div className="row bg-dark p-none fixed-navbar">
         <Link href="/">
-          <a className="col p-2">
+          <div className="col p-2">
             <YouTube className="vertical-align-middle" fill="white" />
-          </a>
+          </div>
         </Link>
         <div className="col p-none d-flex">
           <div className="col p-2" onClick={toggleSearchBar}>

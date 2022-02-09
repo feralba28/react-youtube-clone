@@ -33,7 +33,7 @@ function BottomNavigation() {
             ) : (
               <Home className="vertical-align-middle" />
             )}
-            <p>{homeText}</p>
+            <p className="fw-500">{homeText}</p>
           </div>
         </Link>
         <Link href={routes.explore}>
@@ -43,7 +43,7 @@ function BottomNavigation() {
             ) : (
               <Explore className="vertical-align-middle" />
             )}
-            <p>{exploreText}</p>
+            <p className="fw-500">{exploreText}</p>
           </div>
         </Link>
         <Link href={routes.library}>
@@ -53,7 +53,7 @@ function BottomNavigation() {
             ) : (
               <Library className="vertical-align-middle" />
             )}
-            <p>{libraryText}</p>
+            <p className="fw-500">{libraryText}</p>
           </div>
         </Link>
       </div>

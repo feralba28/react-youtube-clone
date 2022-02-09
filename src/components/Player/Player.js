@@ -6,6 +6,13 @@ import PlayerControls from './PlayerControls'
 import PLAYER_STATE from './PLAYER_STATE'
 import styles from './styles'
 
+const initialState = {
+  playerState: PLAYER_STATE.UNSTARTED,
+  duration: null,
+  playedTime: 0,
+  controls: false,
+}
+
 const ACTIONS = {
   CUED_VIDEO: 'cued_video',
   BUFFERING_VIDEO: 'buffering_video',
@@ -16,6 +23,7 @@ const ACTIONS = {
   HIDDE_CONTROLS: 'hidde_controls',
   SET_DURATION: 'set_duration',
   SET_PLAYED_TIME: 'set_played_time',
+  RESET: 'reset',
 }
 
 const reducer = (state, action) => {
@@ -72,18 +80,16 @@ const reducer = (state, action) => {
         playedTime: action.payload,
       }
 
+    case ACTIONS.RESET:
+      return action.payload
+
     default:
       return state
   }
 }
 
-function Player({ id, thumbnail }) {
-  const [state, dispatch] = useReducer(reducer, {
-    playerState: PLAYER_STATE.UNSTARTED,
-    duration: null,
-    playedTime: 0,
-    controls: true,
-  })
+function Player({ id }) {
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const { playerState, duration, playedTime, controls } = state
 
@@ -102,6 +108,10 @@ function Player({ id, thumbnail }) {
       dispatch({ type: ACTIONS.ENDED_VIDEO })
     }
   }
+
+  useEffect(() => {
+    dispatch({ type: ACTIONS.RESET, payload: initialState })
+  }, [id])
 
   useEffect(() => {
     if (player) {
@@ -145,12 +155,10 @@ function Player({ id, thumbnail }) {
       <div className="player-container bg-black">
         <div id="player" className="player"></div>
 
-        {(playerState == PLAYER_STATE.UNSTARTED ||
-          playerState == PLAYER_STATE.ENDED) && (
-          <img className="bg-img" src={thumbnail} alt="video_thumbnail" />
-        )}
-
-        <div className="overlay" onClick={handleShowControls}></div>
+        {playerState != PLAYER_STATE.UNSTARTED &&
+          playerState != PLAYER_STATE.ENDED && (
+            <div className="overlay" onClick={handleShowControls}></div>
+          )}
 
         {player && (
           <PlayerControls

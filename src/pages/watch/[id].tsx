@@ -47,7 +47,7 @@ function Watch<NextPage>(props: { item: VideoDetail }) {
               />
             )}
           </div>
-          <Player id={item.id} thumbnail={item.snippet.thumbnails.high.url} />
+          <Player id={item.id} />
         </div>
 
         <div className="container p-none">

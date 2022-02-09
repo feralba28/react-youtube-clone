@@ -33,6 +33,10 @@ const styles = css`
     border: none;
     background: transparent;
   }
+
+  .icon-button {
+    padding: 12px 8px;
+  }
 `
 
 export default styles

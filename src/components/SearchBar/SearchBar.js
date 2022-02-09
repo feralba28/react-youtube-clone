@@ -1,18 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
-import Back from '../Icons/Back'
-import Search from '../Icons/Search'
-import styles from './styles'
+import useFetch from '../../hooks/useFetch'
 
 import Suggestion from '../Suggestion/Suggestion'
-
 import getSuggestions from '../../requests/getSuggestions'
-import useFetch from '../../hooks/useFetch'
+
+import Back from '../Icons/Back'
+import Close from '../Icons/Close'
+import Microphone from '../Icons/Microphone'
+import Search from '../Icons/Search'
+import styles from './styles'
 
 function SearchBar({ toggleSearchBar, onSearch }) {
   const [value, setValue] = useState('')
   const [request, setRequest] = useState(getSuggestions({ keyword: '' }))
 
-  const { response: { data: suggestionResponse } } = useFetch(request)
+  const {
+    response: { data: suggestionResponse },
+  } = useFetch(request)
 
   useEffect(() => {
     if (value) {
@@ -22,6 +26,8 @@ function SearchBar({ toggleSearchBar, onSearch }) {
 
   const handleOnChange = (e) => setValue(e.target.value)
 
+  const handleReset = () => setValue('')
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (value) {
@@ -29,14 +35,12 @@ function SearchBar({ toggleSearchBar, onSearch }) {
     }
   }
 
-  const handleSuggestionClick = (suggestion) => {
-    onSearch(suggestion)
-  }
+  const handleSuggestionClick = (suggestion) => onSearch(suggestion)
 
   const inputRef = useRef()
 
   const handleOnArrowClick = (suggestion) => {
-    setValue(suggestion + " ")
+    setValue(suggestion + ' ')
     inputRef.current.focus()
   }
 
@@ -60,9 +64,19 @@ function SearchBar({ toggleSearchBar, onSearch }) {
               onChange={handleOnChange}
               autoFocus={true}
             />
-            <button className="p-2">
+            {value && (
+              <div className="icon-button" onClick={handleReset}>
+                <Close className="vertical-align-middle" fill="#606060" />
+              </div>
+            )}
+            <button className="icon-button">
               <Search className="vertical-align-middle" fill="#606060" />
             </button>
+            {!value && (
+              <div className="icon-button">
+                <Microphone className="vertical-align-middle" fill="#606060" />
+              </div>
+            )}
           </form>
         </div>
         {suggestionResponse &&

@@ -1,4 +1,6 @@
-function getSearchs({ keyword }) {
+import { AxiosRequestConfig } from 'axios'
+
+function getSearchs({ keyword }: { keyword: string }): AxiosRequestConfig {
   return {
     method: 'get',
     baseURL: process.env.NEXT_PUBLIC_YOUTUBE_API_BASE_URL,

@@ -40,7 +40,10 @@ function SearchBar({ toggleSearchBar }) {
 
   const handleSuggestionClick = (suggestion) => navigate(suggestion)
 
-  const navigate = (query) => router.push('/search/' + query)
+  const navigate = (query) => {
+    toggleSearchBar()
+    router.push('/search/' + query)
+  }
 
   const inputRef = useRef()
 

@@ -13,7 +13,7 @@ import styles from './styles'
 
 function SearchBar({ toggleSearchBar }) {
   const [value, setValue] = useState('')
-  const [request, setRequest] = useState(getSuggestions({ keyword: '' }))
+  const [request, setRequest] = useState(null)
 
   const router = useRouter()
 

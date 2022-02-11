@@ -29,11 +29,6 @@ const styles = css`
     margin: 11px 0px 9px 0px;
   }
 
-  button {
-    border: none;
-    background: transparent;
-  }
-
   .icon-button {
     padding: 12px 8px;
   }

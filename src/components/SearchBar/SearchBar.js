@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import useFetch from '../../hooks/useFetch'
 
 import Suggestion from '../Suggestion/Suggestion'
@@ -10,9 +11,11 @@ import Microphone from '../Icons/Microphone'
 import Search from '../Icons/Search'
 import styles from './styles'
 
-function SearchBar({ toggleSearchBar, onSearch }) {
+function SearchBar({ toggleSearchBar }) {
   const [value, setValue] = useState('')
-  const [request, setRequest] = useState(getSuggestions({ keyword: '' }))
+  const [request, setRequest] = useState(null)
+
+  const router = useRouter()
 
   const {
     response: { data: suggestionResponse },
@@ -31,11 +34,16 @@ function SearchBar({ toggleSearchBar, onSearch }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (value) {
-      onSearch(value)
+      navigate(value)
     }
   }
 
-  const handleSuggestionClick = (suggestion) => onSearch(suggestion)
+  const handleSuggestionClick = (suggestion) => navigate(suggestion)
+
+  const navigate = (query) => {
+    toggleSearchBar()
+    router.push('/search/' + query)
+  }
 
   const inputRef = useRef()
 

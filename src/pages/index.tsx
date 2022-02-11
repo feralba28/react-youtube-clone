@@ -35,7 +35,7 @@ function Home() {
         <title>Home</title>
       </Head>
 
-      <WebsiteLayout setKeyword={setKeyword}>
+      <WebsiteLayout>
         {isLoading &&
           [1, 2, 3].map((i) => (
             <div className="d-flex" key={i}>

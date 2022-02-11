@@ -8,6 +8,11 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+  background: transparent;
+}
+
 .color-black {
   color: black;
 }
@@ -18,6 +23,10 @@ a {
 
 .bg-black {
   background-color: black;
+}
+
+.bg-light {
+  background-color: #f1f1f1;
 }
 
 .w-100 {

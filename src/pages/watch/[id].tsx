@@ -20,15 +20,9 @@ import styles from '../../styles/watch'
 function Watch<NextPage>(props: { item: VideoDetail }) {
   const { item } = props
 
-  const [keyword, setKeyword] = useState('')
   const [isSearchBar, setIsSearchBar] = useState(false)
 
   const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
-
-  const onSearch = (value: string) => {
-    setKeyword(value)
-    setIsSearchBar(!isSearchBar)
-  }
 
   return (
     <>
@@ -43,7 +37,6 @@ function Watch<NextPage>(props: { item: VideoDetail }) {
             {isSearchBar && (
               <SearchBar
                 toggleSearchBar={toggleSearchBar}
-                onSearch={onSearch}
               />
             )}
           </div>

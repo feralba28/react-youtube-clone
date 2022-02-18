@@ -1,16 +1,17 @@
 import { useState } from 'react'
+
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation'
-import Navbar from '../components/Navbar/Navbar'
+import NavbarSearch from '../components/NavbarSearch/NavbarSearch'
 import SearchBar from '../components/SearchBar/SearchBar'
 
-function WebsiteLayout({ children }) {
+function SearchPageLayout({ children }) {
   const [isSearchBar, setIsSearchBar] = useState(false)
 
   const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
 
   return (
     <div className="container p-none d-flex fd-col min-height-100vh">
-      <Navbar toggleSearchBar={toggleSearchBar} />
+      <NavbarSearch toggleSearchBar={toggleSearchBar} />
       {isSearchBar && (
         <SearchBar toggleSearchBar={toggleSearchBar} />
       )}
@@ -20,4 +21,4 @@ function WebsiteLayout({ children }) {
   )
 }
 
-export default WebsiteLayout
+export default SearchPageLayout

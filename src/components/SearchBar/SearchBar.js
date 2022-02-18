@@ -1,42 +1,58 @@
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import useFetch from '../../hooks/useFetch'
+
+import Suggestion from '../Suggestion/Suggestion'
+import getSuggestions from '../../requests/getSuggestions'
+
 import Back from '../Icons/Back'
+import Close from '../Icons/Close'
+import Microphone from '../Icons/Microphone'
 import Search from '../Icons/Search'
 import styles from './styles'
 
-import Suggestion from '../Suggestion/Suggestion'
-
-import getSuggestions from '../../requests/getSuggestions'
-import useFetch from '../../hooks/useFetch'
-
-function SearchBar({ toggleSearchBar, onSearch }) {
+function SearchBar({ toggleSearchBar }) {
   const [value, setValue] = useState('')
-  const [request, setRequest] = useState(getSuggestions({ keyword: '' }))
+  const [request, setRequest] = useState(null)
 
-  const { response: { data: suggestionResponse } } = useFetch(request)
+  const router = useRouter()
+
+  const {
+    response: { data: suggestionResponse },
+  } = useFetch(request)
 
   useEffect(() => {
-    if (value) {
-      setRequest(getSuggestions({ keyword: value }))
-    }
+    const timerId = setTimeout(() => {
+      if (value) {
+        setRequest(getSuggestions({ keyword: value }))
+      }
+    }, 200)
+
+    return () => clearTimeout(timerId)
   }, [value])
 
   const handleOnChange = (e) => setValue(e.target.value)
 
+  const handleReset = () => setValue('')
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (value) {
-      onSearch(value)
+      navigate(value)
     }
   }
 
-  const handleSuggestionClick = (suggestion) => {
-    onSearch(suggestion)
+  const handleSuggestionClick = (suggestion) => navigate(suggestion)
+
+  const navigate = (query) => {
+    toggleSearchBar()
+    router.push('/search/' + query)
   }
 
   const inputRef = useRef()
 
   const handleOnArrowClick = (suggestion) => {
-    setValue(suggestion + " ")
+    setValue(suggestion + ' ')
     inputRef.current.focus()
   }
 
@@ -60,9 +76,19 @@ function SearchBar({ toggleSearchBar, onSearch }) {
               onChange={handleOnChange}
               autoFocus={true}
             />
-            <button className="p-2">
+            {value && (
+              <div className="icon-button" onClick={handleReset}>
+                <Close className="vertical-align-middle" fill="#606060" />
+              </div>
+            )}
+            <button className="icon-button">
               <Search className="vertical-align-middle" fill="#606060" />
             </button>
+            {!value && (
+              <div className="icon-button">
+                <Microphone className="vertical-align-middle" fill="#606060" />
+              </div>
+            )}
           </form>
         </div>
         {suggestionResponse &&

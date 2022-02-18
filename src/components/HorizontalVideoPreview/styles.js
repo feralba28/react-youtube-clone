@@ -7,7 +7,6 @@ const styles = css`
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
     padding-bottom: 56.25%;
     margin: auto;
     overflow: hidden;
@@ -25,19 +24,11 @@ const styles = css`
 
   .preview-title {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .duration-container {
-    position: absolute;
-    bottom: 0;
-  }
-
-  .duration-item {
-    padding: 1px 4px;
+    line-height: 18px;
   }
 `
 

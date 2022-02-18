@@ -4,13 +4,13 @@ const styles = css`
   .searchbar {
     position: fixed;
     top: 0;
-    z-index: 5;
+    z-index: 10;
   }
 
   .overlay {
     position: fixed;
     top: 0;
-    z-index: 3;
+    z-index: 7;
     min-height: 100vh;
     background: rgba(0,0,0,0.8)
   }
@@ -29,9 +29,8 @@ const styles = css`
     margin: 11px 0px 9px 0px;
   }
 
-  button {
-    border: none;
-    background: transparent;
+  .icon-button {
+    padding: 12px 8px;
   }
 `
 

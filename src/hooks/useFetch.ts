@@ -5,7 +5,7 @@ interface FetchData<T> {
   data: T | null
 }
 
-function useFetch<dataType>(props: object): {
+function useFetch<dataType>(props: object | null): {
   isLoading: boolean
   response: FetchData<dataType>
   isError: boolean
@@ -19,18 +19,20 @@ function useFetch<dataType>(props: object): {
   })
 
   useEffect(() => {
-    setIsLoading(true)
-    axios
-      .request(props)
-      .then((res) => {
-        setIsError(false)
-        setResponse(res)
-      })
-      .catch((err) => {
-        console.error(err)
-        setIsError(true)
-      })
-      .then(() => setIsLoading(false))
+    if (props) {
+      setIsLoading(true)
+      axios
+        .request(props)
+        .then((res) => {
+          setIsError(false)
+          setResponse(res)
+        })
+        .catch((err) => {
+          console.error(err)
+          setIsError(true)
+        })
+        .then(() => setIsLoading(false))
+    }
   }, [props])
 
   return {

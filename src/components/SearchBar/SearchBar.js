@@ -22,9 +22,13 @@ function SearchBar({ toggleSearchBar }) {
   } = useFetch(request)
 
   useEffect(() => {
-    if (value) {
-      setRequest(getSuggestions({ keyword: value }))
-    }
+    const timerId = setTimeout(() => {
+      if (value) {
+        setRequest(getSuggestions({ keyword: value }))
+      }
+    }, 200)
+
+    return () => clearTimeout(timerId)
   }, [value])
 
   const handleOnChange = (e) => setValue(e.target.value)

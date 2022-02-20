@@ -11,12 +11,12 @@ function Suggestion({ item, onSuggestionClick, onArrowClick }) {
   }
 
   return (
-    <div className="row ai-stretch p-none bg-white border-bottom br-light">
-      <div className="grow-1 d-flex ai-center p-1 " onClick={handleSuggestionClick}>
-        <p className="fs-14 fw-500">{item}</p>
+    <div className="flex items-stretch bg-white">
+      <div className="grow flex items-center pl-2" onClick={handleSuggestionClick}>
+        <p className="text-sm font-medium">{item}</p>
       </div>
-      <div className="bg-light p-1" onClick={handleOnArrowClick}>
-        <ArrowTopLeft className="vertical-align-middle" fill="#808080" />
+      <div className="bg-zinc-100 p-2" onClick={handleOnArrowClick}>
+        <ArrowTopLeft fill="#808080" />
       </div>
     </div>
   )

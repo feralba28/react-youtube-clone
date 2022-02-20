@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+
 import Search from '../Icons/Search'
 import User from '../Icons/User'
 import YouTube from '../Icons/YouTube'
+
 import styles from './styles'
 
 function Navbar({ toggleSearchBar }) {
@@ -29,19 +31,19 @@ function Navbar({ toggleSearchBar }) {
   return (
     <>
       <div
-        className={`row bg-white p-none border-bottom br-light-grey shadow-m navbar ${
-          isNavbar ? 'visible' : 'hidden'
+        className={`flex justify-between bg-white shadow-md sticky top-0 z-10 ${
+          isNavbar ? 'nav-visible' : 'nav-hidden'
         }`}
       >
-        <div className="col p-2">
-          <YouTube className="vertical-align-middle" />
+        <div className="p-3">
+          <YouTube />
         </div>
-        <div className="col p-none d-flex">
-          <div className="col p-2" onClick={toggleSearchBar}>
-            <Search className="vertical-align-middle" fill="#606060" />
+        <div className="flex">
+          <div className="p-3" onClick={toggleSearchBar}>
+            <Search fill="#606060" />
           </div>
-          <div className="col p-2">
-            <User className="vertical-align-middle" fill="#606060" />
+          <div className="p-3">
+            <User fill="#606060" />
           </div>
         </div>
       </div>

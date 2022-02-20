@@ -1,17 +1,11 @@
 import css from 'styled-jsx/css'
 
 const styles = css`
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-
-  .visible {
+  .nav-visible {
     transition: 0.3s;
   }
 
-  .hidden {
+  .nav-hidden {
     transition: 0.3s;
     transform: translateY(-100%);
   }

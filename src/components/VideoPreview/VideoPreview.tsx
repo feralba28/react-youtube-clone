@@ -18,7 +18,7 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
   return (
     <>
       <Link href={`/watch/${item.id.videoId}`}>
-        <div className="d-flex fd-col py-1">
+        <div className="flex flex-col py-1.5">
           <div className="preview-img-container">
             <img
               src={item.snippet.thumbnails.high.url}
@@ -31,29 +31,30 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
             </span>
           </div> */}
           </div>
-          <div className="row ai-start">
+          <div className="flex items-start p-1">
             {/* <div className="col">
             <img
               src={userIcon}
               width="40"
               height="40"
-              className="vertical-align-middle"
             />
           </div> */}
-            <div className="col grow-1">
-              <p className="fs-14 fw-500 preview-title">{item.snippet.title}</p>
-              <div className="fs-12 mt-1">
-                <span className="color-dark-grey">
+            <div className="p-1.5 grow">
+              <p className="text-sm font-medium text-gray-800 preview-title">
+                {item.snippet.title}
+              </p>
+              <div className="text-xs mt-0.5">
+                <span className="text-gray-500">
                   {item.snippet.channelTitle}
                 </span>
-                {/* <span className="color-dark-grey mx-1">•</span>
-              <span className="color-dark-grey">{viewCountText}</span> */}
-                <span className="color-dark-grey mx-1">•</span>
-                <span className="color-dark-grey">{timeAgo}</span>
+                {/* <span className="text-gray-500 mx-1">•</span>
+              <span className="text-gray-500">{viewCountText}</span> */}
+                <span className="text-gray-500 mx-1">•</span>
+                <span className="text-gray-500">{timeAgo}</span>
               </div>
             </div>
-            <div className="col">
-              <Ellipsis className="vertical-align-middle" fill="#333333" />
+            <div className="p-1.5">
+              <Ellipsis fill="#1F2937" />
             </div>
           </div>
         </div>

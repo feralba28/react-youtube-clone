@@ -30,13 +30,13 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
               <p className="text-sm text-gray-800 preview-title">
                 {item.snippet.title}
               </p>
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-gray-500">
                 {item.snippet.channelTitle}
               </p>
-              <p className="text-xs text-gray-400">{timeAgo}</p>
+              <p className="text-xs text-gray-500">{timeAgo}</p>
             </div>
             <div className="p-1.5">
-              <Ellipsis fill="#9CA3AF" />
+              <Ellipsis fill="#6B7280" />
             </div>
           </div>
         </div>

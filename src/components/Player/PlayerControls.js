@@ -47,37 +47,34 @@ export default function PlayerControls({
 
       return () => clearTimeout(timer)
     }
-  }, [playerState, controls])  
+  }, [playerState, controls])
 
   const handleOnChange = (value) => {
     setValue(value)
-    setPlayedText(
-      Duration.fromObject({ seconds: value }).toFormat('hh:mm:ss')
-    )
+    setPlayedText(Duration.fromObject({ seconds: value }).toFormat('hh:mm:ss'))
   }
 
   return (
     <>
       <div
-        className={`controls-container ${controls ? 'visible' : 'hidden'}`}
+        className={`absolute inset-0 bg-black/60 z-20 ${
+          controls ? 'visible' : 'hidden'
+        }`}
         onClick={handleHiddeControls}
       >
-        <div className="row p-none jc-end controls-top">
-          <div className="col p-2">
-            <Config className="vertical-align-middle" fill="#fff" />
+        <div className="w-full flex justify-end absolute top-0">
+          <div className="p-3">
+            <Config fill="#fff" />
           </div>
         </div>
-        <div className="row p-none jc-evenly controls-middle">
-          <div className="col p-none" onClick={(e) => {
-                e.stopPropagation()
-                handleRewing()
-              }}>
-            <Previous
-              width={36}
-              height={36}
-              className="vertical-align-middle"
-              fill="#fff"
-            />
+        <div className="w-full flex items-center justify-evenly absolute top-1/2 -translate-y-1/2">
+          <div
+            onClick={(e) => {
+              e.stopPropagation()
+              handleRewing()
+            }}
+          >
+            <Previous width={36} height={36} fill="#fff" />
           </div>
           {playerState == PLAYER_STATE.BUFFERING && (
             <ClipLoader
@@ -92,60 +89,42 @@ export default function PlayerControls({
             playerState == PLAYER_STATE.PAUSED ||
             playerState == PLAYER_STATE.ENDED) && (
             <div
-              className="col p-none"
               onClick={(e) => {
                 e.stopPropagation()
                 handlePlay()
               }}
             >
-              <Play
-                width={56}
-                height={56}
-                className="vertical-align-middle"
-                fill="#fff"
-              />
+              <Play width={56} height={56} fill="#fff" />
             </div>
           )}
           {playerState == PLAYER_STATE.PLAYING && (
             <div
-              className="col p-none"
               onClick={(e) => {
                 e.stopPropagation()
                 handlePause()
               }}
             >
-              <Pause
-                width={56}
-                height={56}
-                className="vertical-align-middle"
-                fill="#fff"
-              />
+              <Pause width={56} height={56} fill="#fff" />
             </div>
           )}
-          <div className="col p-none" onClick={(e) => {
-                e.stopPropagation()
-                handleGoFoward()
-              }}>
-            <Following
-              width={36}
-              height={36}
-              className="vertical-align-middle"
-              fill="#fff"
-            />
+          <div
+            onClick={(e) => {
+              e.stopPropagation()
+              handleGoFoward()
+            }}
+          >
+            <Following width={36} height={36} fill="#fff" />
           </div>
         </div>
-        <div className="row fd-col ai-start py-2 px-4 controls-bottom">
-          <div className="col p-none my-2">
-            <span className="fs-12 fw-500 color-white">{playedText}</span>
-            <span className="fs-12 fw-500 color-light-grey"> / </span>
-            <span className="fs-12 fw-500 color-light-grey">
+        <div className="w-full flex flex-col items-start py-3 px-6 absolute bottom-0">
+          <div className="my-3">
+            <span className="text-xs font-medium text-white">{playedText}</span>
+            <span className="text-xs font-medium text-white/60"> / </span>
+            <span className="text-xs font-medium text-white/60">
               {durationText}
             </span>
           </div>
-          <div
-            className="col w-100 p-none"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="w-full" onClick={(e) => e.stopPropagation()}>
             <Slider
               min={0}
               max={duration}

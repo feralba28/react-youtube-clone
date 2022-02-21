@@ -15,7 +15,6 @@ import Comments from '../../blocks/Watch/Comments'
 
 import getVideos from '../../requests/getVideos'
 import VideoDetail from '../../types/VideoDetail'
-import styles from '../../styles/watch'
 
 function Watch<NextPage>(props: { item: VideoDetail }) {
   const { item } = props
@@ -30,43 +29,33 @@ function Watch<NextPage>(props: { item: VideoDetail }) {
         <title>{item.snippet.title}</title>
       </Head>
 
-      <div className="container p-none d-flex fd-col min-height-100vh">
-        <div className="d-flex fd-col sticky-container">
-          <div className="row p-none">
+      <div className="flex flex-col divide-y">
+        <div className="flex flex-col sticky top-0 z-10">
+          <div>
             <WatchNavbar toggleSearchBar={toggleSearchBar} />
-            {isSearchBar && (
-              <SearchBar
-                toggleSearchBar={toggleSearchBar}
-              />
-            )}
+            {isSearchBar && <SearchBar toggleSearchBar={toggleSearchBar} />}
           </div>
           <Player id={item.id} />
         </div>
 
-        <div className="container p-none">
-          <Information
-            title={item.snippet.title}
-            viewCount={item.statistics.viewCount}
-            publishedAt={item.snippet.publishedAt}
-          />
+        <div className="divide-y">
+          <div>
+            <Information
+              title={item.snippet.title}
+              viewCount={item.statistics.viewCount}
+              publishedAt={item.snippet.publishedAt}
+            />
 
-          <ActionBar likeCount={item.statistics.likeCount} />
-
-          <div className="border-bottom br-light"></div>
+            <ActionBar likeCount={item.statistics.likeCount} />
+          </div>
 
           <Channel title={item.snippet.channelTitle} />
 
-          <div className="border-bottom br-light"></div>
-
           <Comments commentCount={item.statistics.commentCount} />
-
-          <div className="border-bottom br-light"></div>
         </div>
-        
+
         <Related id={item.id} />
       </div>
-
-      <style jsx>{styles}</style>
     </>
   )
 }

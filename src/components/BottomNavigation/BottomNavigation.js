@@ -23,7 +23,7 @@ function BottomNavigation() {
 
   return (
     <>
-      <div className="flex bg-white sticky bottom-0">
+      <div className="flex bg-white border sticky bottom-0">
         <Link href={routes.home}>
           <div className="grow flex flex-col items-center p-1">
             {pathname === routes.home ? (

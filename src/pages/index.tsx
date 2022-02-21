@@ -38,7 +38,7 @@ function Home() {
       <WebsiteLayout>
         {isLoading &&
           [1, 2, 3].map((i) => (
-            <div className="d-flex" key={i}>
+            <div className="flex" key={i}>
               <VideoPreviewLoader />
             </div>
           ))}

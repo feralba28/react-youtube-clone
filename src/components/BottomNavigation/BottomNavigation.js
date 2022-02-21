@@ -8,8 +8,6 @@ import HomeFilled from '../Icons/HomeFilled'
 import ExploreFilled from '../Icons/ExploreFilled'
 import LibraryFilled from '../Icons/LibraryFilled'
 
-import styles from './styles'
-
 const routes = {
   home: '/',
   explore: '/explore',
@@ -25,40 +23,38 @@ function BottomNavigation() {
 
   return (
     <>
-      <div className="row bg-white p-none border-top br-light-grey bottom-navigation">
+      <div className="flex bg-white border sticky bottom-0">
         <Link href={routes.home}>
-          <div className="col grow-1 p-none my-1 mx-4 d-flex fd-col ai-center">
+          <div className="grow flex flex-col items-center p-1">
             {pathname === routes.home ? (
-              <HomeFilled className="vertical-align-middle" />
+              <HomeFilled />
             ) : (
-              <Home className="vertical-align-middle" />
+              <Home />
             )}
-            <p className="fw-500">{homeText}</p>
+            <p className="text-[11px]">{homeText}</p>
           </div>
         </Link>
         <Link href={routes.explore}>
-          <div className="col grow-1 p-none my-1 mx-4 d-flex fd-col ai-center">
+          <div className="grow flex flex-col items-center p-1">
             {pathname === routes.explore ? (
-              <ExploreFilled className="vertical-align-middle" />
+              <ExploreFilled />
             ) : (
-              <Explore className="vertical-align-middle" />
+              <Explore />
             )}
-            <p className="fw-500">{exploreText}</p>
+            <p className="text-[11px]">{exploreText}</p>
           </div>
         </Link>
         <Link href={routes.library}>
-          <div className="col grow-1 p-none my-1 mx-4 d-flex fd-col ai-center">
+          <div className="grow flex flex-col items-center p-1">
             {pathname === routes.library ? (
-              <LibraryFilled className="vertical-align-middle" />
+              <LibraryFilled />
             ) : (
-              <Library className="vertical-align-middle" />
+              <Library />
             )}
-            <p className="fw-500">{libraryText}</p>
+            <p className="text-[11px]">{libraryText}</p>
           </div>
         </Link>
       </div>
-
-      <style jsx>{styles}</style>
     </>
   )
 }

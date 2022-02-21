@@ -6,11 +6,6 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon/favicon.ico" />
-          {/* <!-- Roofstrap CSS --> */}
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/RooftopAcademy/rooftstrap@v2.5.0/dist/css/app.css"
-          ></link>
         </Head>
         <body>
           <Main />

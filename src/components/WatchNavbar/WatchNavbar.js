@@ -7,18 +7,18 @@ import styles from './styles'
 function FixedNavbar({ toggleSearchBar }) {
   return (
     <>
-      <div className="row bg-dark p-none fixed-navbar">
+      <div className="flex justify-between bg-zinc-800">
         <Link href="/">
-          <div className="col p-2">
-            <YouTube className="vertical-align-middle" fill="white" />
+          <div className="p-3">
+            <YouTube fill="white" />
           </div>
         </Link>
-        <div className="col p-none d-flex">
-          <div className="col p-2" onClick={toggleSearchBar}>
-            <Search className="vertical-align-middle" fill="white" />
+        <div className="flex">
+          <div className="p-3" onClick={toggleSearchBar}>
+            <Search fill="white" />
           </div>
-          <div className="col p-2">
-            <Ellipsis className="vertical-align-middle" fill="white" />
+          <div className="p-3">
+            <Ellipsis fill="white" />
           </div>
         </div>
       </div>

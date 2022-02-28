@@ -123,13 +123,13 @@ export default function Sidebar({ isSidebar, toggleSidebar }) {
     <>
       <div
         className={`w-full h-screen fixed top-0 z-20 bg-black/80 hidden ${
-          isSidebar ? 'lg:block' : 'lg:hidden'
+          isSidebar ? 'md:block' : 'md:hidden'
         }`}
         onClick={toggleSidebar}
       ></div>
 
       <div
-        className={`fixed top-0 z-30 w-60 h-screen bg-white hidden lg:flex flex-col ${
+        className={`fixed top-0 z-30 w-60 h-screen bg-white hidden md:flex flex-col ${
           isSidebar ? 'sidebar-visible' : 'sidebar-hidden'
         }`}
       >

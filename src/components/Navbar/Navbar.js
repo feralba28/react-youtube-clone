@@ -36,13 +36,14 @@ function Navbar() {
   return (
     <>
       <div
-        className={`flex justify-between items-center bg-white h-12 sticky top-0 shadow-md z-10 ${
+        className={`flex items-center bg-white h-12 sticky top-0 justify-between shadow-md z-10 ${
           isNavbar ? 'nav-visible' : 'nav-hidden'
-        } lg:shadow-none lg:h-[54px]`}
+        } md:shadow-none md:h-[54px]`}
       >
-        <div className="p-3 lg:py-3 lg:px-0">
+        <div className="p-3 md:py-3 md:px-0">
           <YouTube />
         </div>
+
         <div className="flex">
           <div className="p-3" onClick={toggleSearchBar}>
             <Search fill="#606060" />

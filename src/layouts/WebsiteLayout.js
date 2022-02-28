@@ -15,9 +15,9 @@ function WebsiteLayout({ children }) {
   return (
     <div
       className="h-screen grid grid-cols-1 grid-rows-[48px_minmax(auto,_1fr)_50px]
-      lg:grid-cols-[74px_minmax(auto,_1fr)] lg:grid-rows-[54px_minmax(auto,_1fr)]"
+      md:grid-cols-[74px_minmax(auto,_1fr)] md:grid-rows-[54px_minmax(auto,_1fr)]"
     >
-      <button className="bg-white sticky top-0 hidden lg:block" onClick={toggleSidebar}>
+      <button className="bg-white sticky top-0 z-10 hidden md:block" onClick={toggleSidebar}>
         <Menu stroke="#303030"/>
       </button>
 
@@ -27,7 +27,7 @@ function WebsiteLayout({ children }) {
 
       <Sidebar isSidebar={isSidebar} toggleSidebar={toggleSidebar} />
 
-      <main className='lg:border-t lg:overflow-y-scroll scroll-smooth'>
+      <main className='md:border-t md:col-span-2 md:overflow-y-scroll lg:col-span-1'>
         {children}
       </main>
 

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 
+import SearchBar from '../SearchBar/SearchBar'
+
 import Search from '../Icons/Search'
 import User from '../Icons/User'
 import YouTube from '../Icons/YouTube'
 
 import styles from './styles'
 
-function Navbar({ toggleSearchBar }) {
+function Navbar() {
   const [isNavbar, setIsNavbar] = useState(true)
   const [oldScrollY, setOldScrollY] = useState(0)
 
@@ -28,14 +30,17 @@ function Navbar({ toggleSearchBar }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [oldScrollY])
 
+  const [isSearchBar, setIsSearchBar] = useState(false)
+  const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
+
   return (
     <>
       <div
-        className={`flex justify-between bg-white shadow-md sticky top-0 z-10 ${
+        className={`flex justify-between items-center bg-white h-12 sticky top-0 shadow-md z-10 ${
           isNavbar ? 'nav-visible' : 'nav-hidden'
-        }`}
+        } lg:shadow-none lg:h-[54px]`}
       >
-        <div className="p-3">
+        <div className="p-3 lg:py-3 lg:px-0">
           <YouTube />
         </div>
         <div className="flex">
@@ -47,6 +52,10 @@ function Navbar({ toggleSearchBar }) {
           </div>
         </div>
       </div>
+
+      {isSearchBar && (
+        <SearchBar toggleSearchBar={toggleSearchBar} />
+      )}
 
       <style jsx>{styles}</style>
     </>

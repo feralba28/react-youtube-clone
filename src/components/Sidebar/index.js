@@ -26,6 +26,7 @@ import User from '../Icons/User'
 import Warning from '../Icons/Warning'
 
 import styles from './styles'
+import Button from '../Button'
 
 const mainMenu = [
   [
@@ -161,12 +162,7 @@ export default function Sidebar({ isSidebar, toggleSidebar }) {
 
           <div className="flex flex-col gap-2 px-8 py-4">
             <p className="text-sm">{loginDescriptionText}</p>
-            <button className="w-32 h-9 rounded-sm border border-blue-600 flex items-center justify-center gap-2">
-              <User fill="#2563eb" />
-              <p className="text-[14px] font-medium text-blue-600 uppercase">
-                {loginButtonText}
-              </p>
-            </button>
+            <Button icon={<User fill="#2563eb" />} text={loginButtonText}/>
           </div>
 
           <ul className="py-2">

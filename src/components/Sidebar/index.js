@@ -120,7 +120,7 @@ export default function Sidebar({ isActive, toggleSidebar }) {
   const exploreChannelsText = 'Explorar canales'
 
   return (
-    <aside className='absolute inset-0'>
+    <aside className={`absolute inset-0 ${isActive ? 'visible' : 'invisible'}`}>
       <div
         className={`w-full h-screen fixed top-0 z-20 bg-black/80 hidden ${
           isActive ? 'md:block' : 'md:hidden'

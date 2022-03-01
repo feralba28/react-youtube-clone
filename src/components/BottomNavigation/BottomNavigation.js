@@ -23,7 +23,7 @@ function BottomNavigation() {
 
   return (
     <>
-      <div className="flex bg-white border sticky bottom-0">
+      <footer className="flex bg-white border sticky bottom-0 h-[50px] md:hidden">
         <Link href={routes.home}>
           <div className="grow flex flex-col items-center p-1">
             {pathname === routes.home ? (
@@ -54,7 +54,7 @@ function BottomNavigation() {
             <p className="text-[11px]">{libraryText}</p>
           </div>
         </Link>
-      </div>
+      </footer>
     </>
   )
 }

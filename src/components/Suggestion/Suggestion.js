@@ -11,11 +11,11 @@ function Suggestion({ item, onSuggestionClick, onArrowClick }) {
   }
 
   return (
-    <div className="flex items-stretch bg-white">
+    <div className="h-10 flex items-stretch bg-white hover:bg-zinc-100 hover:cursor-default">
       <div className="grow flex items-center pl-2" onClick={handleSuggestionClick}>
         <p className="text-sm font-medium">{item}</p>
       </div>
-      <div className="bg-zinc-100 p-2" onClick={handleOnArrowClick}>
+      <div className="flex items-center bg-zinc-100 p-2 md:hidden" onClick={handleOnArrowClick}>
         <ArrowTopLeft fill="#808080" />
       </div>
     </div>

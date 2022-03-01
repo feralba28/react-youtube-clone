@@ -18,7 +18,7 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
   return (
     <>
       <Link href={`/watch/${item.id.videoId}`}>
-        <div className="flex flex-col py-1.5">
+        <a className="flex flex-col">
           <div className="preview-img-container">
             <img
               src={item.snippet.thumbnails.high.url}
@@ -39,7 +39,7 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
               height="40"
             />
           </div> */}
-            <div className="p-1.5 grow">
+            <div className="px-1.5 pt-1.5 grow">
               <p className="text-sm font-medium text-gray-800 preview-title">
                 {item.snippet.title}
               </p>
@@ -57,7 +57,7 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
               <Ellipsis fill="#1F2937" />
             </div>
           </div>
-        </div>
+        </a>
       </Link>
 
       <style jsx>{styles}</style>

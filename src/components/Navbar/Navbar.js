@@ -7,6 +7,7 @@ import Suggestion from '../Suggestion/Suggestion'
 import Button from '../Button'
 
 import Ellipsis from '../Icons/Ellipsis'
+import Menu from '../Icons/Menu'
 import MenuGrid from '../Icons/MenuGrid'
 import MicrophoneFilled from '../Icons/MicrophoneFilled'
 import Search from '../Icons/Search'
@@ -15,7 +16,7 @@ import YouTube from '../Icons/YouTube'
 
 import styles from './styles'
 
-function Navbar() {
+function Navbar({ toggleSidebar }) {
   const [isNavbar, setIsNavbar] = useState(true)
   const [oldScrollY, setOldScrollY] = useState(0)
 
@@ -58,16 +59,25 @@ function Navbar() {
 
   return (
     <>
-      <div
-        className={`flex items-center bg-white h-12 sticky top-0 justify-between shadow-md z-10 ${
+      <nav
+        className={`flex items-center justify-between gap-4 bg-white h-12 sticky top-0 shadow-md z-10 ${
           isNavbar ? 'nav-visible' : 'nav-hidden'
-        } md:shadow-none md:h-[56px] pr-4`}
+        } md:col-span-2 md:shadow-none md:h-[56px] md:px-4`}
       >
-        <Link href="/">
-          <a className="p-3 md:py-3 md:px-0">
-            <YouTube />
-          </a>
-        </Link>
+        <div className="flex items-center gap-4">
+          <button
+            className="p-2 bg-white sticky top-0 z-10 hidden md:flex"
+            onClick={toggleSidebar}
+          >
+            <Menu stroke="#303030" />
+          </button>
+
+          <Link href="/">
+            <a className="p-3 md:py-3 md:px-0">
+              <YouTube />
+            </a>
+          </Link>
+        </div>
 
         <div className="flex md:hidden">
           <div className="p-3" onClick={toggleSearchBar}>
@@ -113,7 +123,7 @@ function Navbar() {
           </button>
         </div>
 
-        <div className="hidden md:flex items-center gap-2 px-4">
+        <div className="hidden md:flex items-center gap-2">
           <button className="flex p-2">
             <MenuGrid fill="#606060" />
           </button>
@@ -126,7 +136,7 @@ function Navbar() {
             className="w-[120px] h-[40px]"
           />
         </div>
-      </div>
+      </nav>
 
       {isSearchBar && <SearchBar toggleSearchBar={toggleSearchBar} />}
 

@@ -14,12 +14,12 @@ function FixedNavbar({ toggleSearchBar }) {
           </div>
         </Link>
         <div className="flex">
-          <div className="p-3" onClick={toggleSearchBar}>
+          <button className="p-3" onClick={toggleSearchBar}>
             <Search fill="white" />
-          </div>
-          <div className="p-3">
+          </button>
+          <button className="p-3">
             <Ellipsis fill="white" />
-          </div>
+          </button>
         </div>
       </div>
 

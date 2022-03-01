@@ -15,9 +15,9 @@ function Suggestion({ item, onSuggestionClick, onArrowClick }) {
       <div className="grow flex items-center pl-2" onClick={handleSuggestionClick}>
         <p className="text-sm font-medium">{item}</p>
       </div>
-      <div className="flex items-center bg-zinc-100 p-2 md:hidden" onClick={handleOnArrowClick}>
+      <button className="flex items-center bg-zinc-100 p-2 md:hidden" onClick={handleOnArrowClick}>
         <ArrowTopLeft fill="#808080" />
-      </div>
+      </button>
     </div>
   )
 }

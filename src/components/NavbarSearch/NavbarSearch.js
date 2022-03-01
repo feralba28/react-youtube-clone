@@ -57,14 +57,14 @@ function NavbarSearch({ toggleSearchBar }) {
             <Filter fill="#606060" />
           </div>
         </div>
-        <div className="pl-3 pr-1.5 py-1.5">
+        <button className="pl-3 pr-1.5 py-1.5">
           <div className="flex items-center justify-center bg-zinc-100 w-8 h-8 rounded-full ">
             <Microphone fill="#606060" />
           </div>
-        </div>
-        <div className="pl-1.5 pr-3 py-3">
+        </button>
+        <button className="pl-1.5 pr-3 py-3">
           <Ellipsis fill="#606060" />
-        </div>
+        </button>
       </div>
 
       <style jsx>{styles}</style>

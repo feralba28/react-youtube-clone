@@ -62,12 +62,12 @@ function SearchBar({ toggleSearchBar }) {
   return (
     <>
       <div
-        className="w-full h-screen fixed top-0 z-20 bg-black/80"
+        className="w-full h-screen fixed top-0 z-20 bg-black/80 md:hidden"
         onClick={toggleSearchBar}
       ></div>
 
-      <div className="fixed top-0 z-30 w-full">
-        <div className='flex bg-zinc-100'>
+      <div className="fixed top-0 z-30 w-full md:hidden">
+        <div className="flex bg-zinc-100">
           <div className="p-3" onClick={toggleSearchBar}>
             <Back fill="#606060" />
           </div>
@@ -96,19 +96,19 @@ function SearchBar({ toggleSearchBar }) {
             )}
           </form>
         </div>
-        
+
         {suggestionResponse && value && (
-        <div className="divide-y divide-zinc-100">
-          {suggestionResponse[1].slice(0, 10).map((item, index) => (
-            <Suggestion
-              key={index}
-              item={item[0]}
-              onSuggestionClick={handleSuggestionClick}
-              onArrowClick={handleOnArrowClick}
-            />
-          ))}
-        </div>
-      )}
+          <div className="divide-y divide-zinc-100">
+            {suggestionResponse[1].slice(0, 10).map((item, index) => (
+              <Suggestion
+                key={index}
+                item={item[0]}
+                onSuggestionClick={handleSuggestionClick}
+                onArrowClick={handleOnArrowClick}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <style jsx>{styles}</style>
     </>

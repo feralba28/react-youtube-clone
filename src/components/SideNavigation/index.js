@@ -57,7 +57,7 @@ function SideNavigation() {
   const { pathname } = useRouter()
 
   return (
-    <div className="w-[74px] hidden lg:flex flex-col justify-start items-center mt-2">
+    <aside className="w-[74px] hidden lg:flex flex-col justify-start items-center mt-2">
       {navigation.map((item) => (
         <Link href={item.path} key={item.path}>
           <a className="flex flex-col justify-center items-center w-full h-[74px] hover:bg-stone-100 ">
@@ -66,7 +66,7 @@ function SideNavigation() {
           </a>
         </Link>
       ))}
-    </div>
+    </aside>
   )
 }
 

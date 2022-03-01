@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import Button from '../Button'
 import MenuIten from '../MenuItem'
 
 import Config from '../Icons/Config'
@@ -26,7 +27,6 @@ import User from '../Icons/User'
 import Warning from '../Icons/Warning'
 
 import styles from './styles'
-import Button from '../Button'
 
 const mainMenu = [
   [
@@ -113,27 +113,27 @@ const secondaryMenu = [
   },
 ]
 
-export default function Sidebar({ isSidebar, toggleSidebar }) {
+export default function Sidebar({ isActive, toggleSidebar }) {
   const loginDescriptionText =
     'Accede para dar “Me gusta” a los videos, realizar comentarios y suscribirte.'
   const loginButtonText = 'Acceder'
   const exploreChannelsText = 'Explorar canales'
 
   return (
-    <>
+    <aside className='absolute inset-0'>
       <div
         className={`w-full h-screen fixed top-0 z-20 bg-black/80 hidden ${
-          isSidebar ? 'md:block' : 'md:hidden'
+          isActive ? 'md:block' : 'md:hidden'
         }`}
         onClick={toggleSidebar}
       ></div>
 
       <div
         className={`fixed top-0 z-30 w-60 h-screen bg-white hidden md:flex flex-col ${
-          isSidebar ? 'sidebar-visible' : 'sidebar-hidden'
+          isActive ? 'sidebar-visible' : 'sidebar-hidden'
         }`}
       >
-        <div className="flex items-center h-[54px] sticky top-0 bg-white">
+        <div className="flex items-center h-[56px] sticky top-0 bg-white">
           <button className="bg-white w-[74px] h-full" onClick={toggleSidebar}>
             <Menu stroke="#303030" />
           </button>
@@ -219,6 +219,6 @@ export default function Sidebar({ isSidebar, toggleSidebar }) {
       </div>
 
       <style jsx>{styles}</style>
-    </>
+    </aside>
   )
 }

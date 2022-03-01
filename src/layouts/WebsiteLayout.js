@@ -21,7 +21,7 @@ function WebsiteLayout({ children }) {
 
       <Sidebar isActive={isSidebar} toggleSidebar={toggleSidebar} />
 
-      <main className="grow md:border-t md:col-span-2 md:overflow-y-scroll lg:col-span-1">
+      <main className="grow md:bg-zinc-50 md:border-t md:col-span-2 md:overflow-y-scroll lg:col-span-1">
         {children}
       </main>
 

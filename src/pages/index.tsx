@@ -36,17 +36,19 @@ function Home() {
       </Head>
 
       <WebsiteLayout>
-        {isLoading &&
-          [1, 2, 3].map((i) => (
-            <div className="flex" key={i}>
-              <VideoPreviewLoader />
-            </div>
-          ))}
+        <div className='py-2 grid gap-4 grid-cols-1 sm:grid-cols-2 sm:p-4 md:grid-cols-3 xl:grid-cols-4 xl:p-5'>
+          {isLoading &&
+            [1, 2, 3, 4, 5, 6].map((i) => (
+              <div className="flex" key={i}>
+                <VideoPreviewLoader />
+              </div>
+            ))}
 
-        {searchResponse &&
-          searchResponse.items.map((item) => (
-            <VideoPreview item={item} key={item.id.videoId} />
-          ))}
+          {searchResponse &&
+            searchResponse.items.map((item) => (
+              <VideoPreview item={item} key={item.id.videoId} />
+            ))}
+        </div>
 
         {isError && <ErrorView />}
       </WebsiteLayout>

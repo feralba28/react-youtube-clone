@@ -6,7 +6,9 @@ export default function Channel(props: { title: string }) {
   return (
     <div className="flex justify-between items-center px-3 py-4">
       <p className="text-sm">{title}</p>
-      <p className="font-medium color-red">{subscribeText}</p>
+      <button>
+        <p className="font-medium color-red">{subscribeText}</p>
+      </button>
     </div>
   )
 }

@@ -62,12 +62,12 @@ function Navbar({ toggleSidebar }) {
         </div>
 
         <div className="flex md:hidden">
-          <div className="p-3" onClick={toggleSearchBar}>
+          <button className="p-3" onClick={toggleSearchBar}>
             <Search fill="#606060" />
-          </div>
-          <div className="p-3">
+          </button>
+          <button className="p-3">
             <User fill="#606060" />
-          </div>
+          </button>
         </div>
 
         <div className="hidden md:flex items-center gap-2 grow ml-10 max-w-3xl">

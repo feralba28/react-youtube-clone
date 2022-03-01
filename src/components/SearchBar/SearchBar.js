@@ -68,9 +68,9 @@ function SearchBar({ toggleSearchBar }) {
 
       <div className="fixed top-0 z-30 w-full md:hidden">
         <div className="flex bg-zinc-100">
-          <div className="p-3" onClick={toggleSearchBar}>
+          <button className="p-3" onClick={toggleSearchBar}>
             <Back fill="#606060" />
-          </div>
+          </button>
           <form className="grow flex" onSubmit={handleSubmit}>
             <input
               ref={inputRef}
@@ -82,17 +82,17 @@ function SearchBar({ toggleSearchBar }) {
               autoFocus={true}
             />
             {value && (
-              <div className="py-3 px-2" onClick={handleReset}>
+              <button className="py-3 px-2" onClick={handleReset}>
                 <Close fill="#606060" />
-              </div>
+              </button>
             )}
             <button className="py-3 px-2">
               <Search fill="#606060" />
             </button>
             {!value && (
-              <div className="py-3 px-2">
+              <button className="py-3 px-2">
                 <Microphone fill="#606060" />
-              </div>
+              </button>
             )}
           </form>
         </div>

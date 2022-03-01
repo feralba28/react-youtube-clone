@@ -14,26 +14,26 @@ export default function ActionBar(props: { likeCount: string }) {
 
   return (
     <div className="flex p-3 justify-evenly">
-      <div className="flex flex-col items-center">
+      <button className="flex flex-col items-center">
         <Like />
         <p className="mt-1.5 text-xs font-medium text-slate-800">{likeCount}</p>
-      </div>
-      <div className="flex flex-col items-center">
+      </button>
+      <button className="flex flex-col items-center">
         <Dislike />
         <p className="mt-1 text-xs font-medium text-slate-800">{dislikeText}</p>
-      </div>
-      <div className="flex flex-col items-center">
+      </button>
+      <button className="flex flex-col items-center">
         <Share />
         <p className="mt-1 text-xs font-medium text-slate-800">{shareText}</p>
-      </div>
-      <div className="flex flex-col items-center">
+      </button>
+      <button className="flex flex-col items-center">
         <Save />
         <p className="mt-1 text-xs font-medium text-slate-800">{saveText}</p>
-      </div>
-      <div className="flex flex-col items-center">
+      </button>
+      <button className="flex flex-col items-center">
         <Report />
         <p className="mt-1 text-xs font-medium text-slate-800">{reportText}</p>
-      </div>
+      </button>
     </div>
   )
 }

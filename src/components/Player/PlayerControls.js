@@ -63,19 +63,19 @@ export default function PlayerControls({
         onClick={handleHiddeControls}
       >
         <div className="w-full flex justify-end absolute top-0">
-          <div className="p-3">
+          <button className="p-3" onClick={(e) => e.stopPropagation()}>
             <Config fill="#fff" />
-          </div>
+          </button>
         </div>
         <div className="w-full flex items-center justify-evenly absolute top-1/2 -translate-y-1/2">
-          <div
+          <button
             onClick={(e) => {
               e.stopPropagation()
               handleRewing()
             }}
           >
             <Previous width={36} height={36} fill="#fff" />
-          </div>
+          </button>
           {playerState == PLAYER_STATE.BUFFERING && (
             <ClipLoader
               color={'#ffffff'}
@@ -88,33 +88,33 @@ export default function PlayerControls({
             playerState == PLAYER_STATE.CUED ||
             playerState == PLAYER_STATE.PAUSED ||
             playerState == PLAYER_STATE.ENDED) && (
-            <div
+            <button
               onClick={(e) => {
                 e.stopPropagation()
                 handlePlay()
               }}
             >
               <Play width={56} height={56} fill="#fff" />
-            </div>
+            </button>
           )}
           {playerState == PLAYER_STATE.PLAYING && (
-            <div
+            <button
               onClick={(e) => {
                 e.stopPropagation()
                 handlePause()
               }}
             >
               <Pause width={56} height={56} fill="#fff" />
-            </div>
+            </button>
           )}
-          <div
+          <button
             onClick={(e) => {
               e.stopPropagation()
               handleGoFoward()
             }}
           >
             <Following width={36} height={36} fill="#fff" />
-          </div>
+          </button>
         </div>
         <div className="w-full flex flex-col items-start py-3 px-6 absolute bottom-0">
           <div className="my-3">

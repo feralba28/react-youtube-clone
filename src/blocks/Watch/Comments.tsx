@@ -6,15 +6,13 @@ export default function Comments(props: { commentCount: string }) {
   const commentsText = 'Comentarios'
 
   return (
-    <div className="row p-2 py-3">
-      <div className="col p-none">
-        <span className="fs-14 color-black">{commentsText}</span>
-        <span className="fs-14 color-dark-grey mx-1">•</span>
-        <span className="fs-14 color-dark-grey">{commentCount}</span>
+    <div className="flex justify-between items-center p-3">
+      <div>
+        <span className="text-sm">{commentsText}</span>
+        <span className="text-sm text-slate-600 mx-1">•</span>
+        <span className="text-sm text-slate-600">{commentCount}</span>
       </div>
-      <div className="col p-none ">
-        <ArrowUpDown width={16} height={16} className="vertical-align-middle" />
-      </div>
+      <ArrowUpDown width={16} height={16} />
     </div>
   )
 }

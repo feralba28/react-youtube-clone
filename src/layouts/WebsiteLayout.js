@@ -1,20 +1,30 @@
 import { useState } from 'react'
+
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation'
 import Navbar from '../components/Navbar/Navbar'
-import SearchBar from '../components/SearchBar/SearchBar'
+import Sidebar from '../components/Sidebar'
+import SideNavigation from '../components/SideNavigation'
 
 function WebsiteLayout({ children }) {
-  const [isSearchBar, setIsSearchBar] = useState(false)
+  const [isSidebar, setIsSidebar] = useState(false)
 
-  const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
+  const toggleSidebar = () => setIsSidebar(!isSidebar)
 
   return (
-    <div className="container p-none d-flex fd-col min-height-100vh">
-      <Navbar toggleSearchBar={toggleSearchBar} />
-      {isSearchBar && (
-        <SearchBar toggleSearchBar={toggleSearchBar} />
-      )}
-      <div className="container p-none grow-1">{children}</div>
+    <div
+      className="min-h-screen flex flex-col
+      md:h-screen md:grid md:grid-cols-[74px_minmax(auto,_1fr)] md:grid-rows-[56px_minmax(auto,_1fr)]"
+    >
+      <Navbar toggleSidebar={toggleSidebar} />
+
+      <SideNavigation />
+
+      <Sidebar isActive={isSidebar} toggleSidebar={toggleSidebar} />
+
+      <main className="grow md:bg-zinc-50 md:border-t md:col-span-2 md:overflow-y-scroll lg:col-span-1">
+        {children}
+      </main>
+
       <BottomNavigation />
     </div>
   )

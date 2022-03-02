@@ -36,7 +36,7 @@ function SearchPage() {
     <SearchPageLayout>
       {isLoading &&
         [1, 2, 3, 4, 5].map((i) => (
-          <div className="d-flex" key={i}>
+          <div className="flex" key={i}>
             <Loader />
           </div>
         ))}

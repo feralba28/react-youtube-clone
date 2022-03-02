@@ -1,50 +1,126 @@
-import { useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
+import Link from 'next/link'
+import useSearch from '../../hooks/useSearch'
+import useScroll from '../../hooks/useScroll'
+
+import SearchBar from '../SearchBar/SearchBar'
+import Suggestion from '../Suggestion/Suggestion'
+import Button from '../Button'
+
+import Ellipsis from '../Icons/Ellipsis'
+import Menu from '../Icons/Menu'
+import MenuGrid from '../Icons/MenuGrid'
+import MicrophoneFilled from '../Icons/MicrophoneFilled'
 import Search from '../Icons/Search'
 import User from '../Icons/User'
 import YouTube from '../Icons/YouTube'
+
 import styles from './styles'
 
-function Navbar({ toggleSearchBar }) {
-  const [isNavbar, setIsNavbar] = useState(true)
-  const [oldScrollY, setOldScrollY] = useState(0)
+function Navbar({ toggleSidebar }) {
+  const { isActive } = useScroll()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const newScrollY = window.scrollY
+  const [isSearchBar, setIsSearchBar] = useState(false)
+  const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
 
-      if (oldScrollY <= newScrollY) {
-        newScrollY >= 100 ? setIsNavbar(false) : setIsNavbar(true)
-      } else {
-        setIsNavbar(true)
-      }
+  const [inputValue, setInputValue] = useState('')
+  const { suggestionResponse, navigate } = useSearch({ keyword: inputValue })
 
-      setOldScrollY(newScrollY)
-    }
+  const handleOnchange = (e) => setInputValue(e.target.value)
+  const handleOnSuggestionClick = (suggestion) => navigate(suggestion)
 
-    window.addEventListener('scroll', handleScroll)
+  const inputRef = useRef()
 
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [oldScrollY])
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+    navigate(inputValue)
+  }
+
+  const loginButtonText = 'Acceder'
+  const placeHolderText = 'Buscar'
 
   return (
     <>
-      <div
-        className={`row bg-white p-none border-bottom br-light-grey shadow-m navbar ${
-          isNavbar ? 'visible' : 'hidden'
-        }`}
+      <nav
+        className={`flex items-center justify-between gap-4 bg-white h-12 sticky top-0 shadow-md z-10 ${
+          isActive ? 'nav-visible' : 'nav-hidden'
+        } md:col-span-2 md:shadow-none md:h-[56px] md:px-4`}
       >
-        <div className="col p-2">
-          <YouTube className="vertical-align-middle" />
+        <div className="flex items-center gap-4">
+          <button
+            className="p-2 bg-white sticky top-0 z-10 hidden md:flex"
+            onClick={toggleSidebar}
+          >
+            <Menu stroke="#303030" />
+          </button>
+
+          <Link href="/">
+            <a className="p-3 md:py-3 md:px-0">
+              <YouTube />
+            </a>
+          </Link>
         </div>
-        <div className="col p-none d-flex">
-          <div className="col p-2" onClick={toggleSearchBar}>
-            <Search className="vertical-align-middle" fill="#606060" />
-          </div>
-          <div className="col p-2">
-            <User className="vertical-align-middle" fill="#606060" />
-          </div>
+
+        <div className="flex md:hidden">
+          <button className="p-3" onClick={toggleSearchBar}>
+            <Search fill="#606060" />
+          </button>
+          <button className="p-3">
+            <User fill="#606060" />
+          </button>
         </div>
-      </div>
+
+        <div className="hidden md:flex items-center gap-2 grow ml-10 max-w-3xl">
+          <form
+            className="grow flex items-stretch border border-gray-300 rounded-sm divide-x divide-gray-300"
+            onSubmit={handleOnSubmit}
+          >
+            <div className="relative grow flex items-stretch">
+              <input
+                ref={inputRef}
+                type="search"
+                className="grow outline-none px-3 rounded-l-sm focus:border focus:border-blue-700 focus:px-[11px]"
+                placeholder={placeHolderText}
+                value={inputValue}
+                onChange={handleOnchange}
+              />
+              {suggestionResponse && inputValue && (
+                <div className="absolute top-0 translate-y-[40px] w-full border shadow-lg divide-y divide-zinc-100">
+                  {suggestionResponse[1].slice(0, 10).map((item, index) => (
+                    <Suggestion
+                      key={index}
+                      item={item[0]}
+                      onSuggestionClick={handleOnSuggestionClick}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+            <button className="w-16 h-10 bg-zinc-100 flex items-center justify-center rounded-r-sm">
+              <Search fill="#303030" />
+            </button>
+          </form>
+          <button className="flex items-center justify-center bg-zinc-100 w-10 h-10 rounded-full">
+            <MicrophoneFilled />
+          </button>
+        </div>
+
+        <div className="hidden md:flex items-center gap-2">
+          <button className="flex p-2">
+            <MenuGrid fill="#606060" />
+          </button>
+          <button className="flex p-2">
+            <Ellipsis fill="#606060" />
+          </button>
+          <Button
+            icon={<User fill="#2563eb" />}
+            text={loginButtonText}
+            className="w-[120px] h-[40px]"
+          />
+        </div>
+      </nav>
+
+      {isSearchBar && <SearchBar toggleSearchBar={toggleSearchBar} />}
 
       <style jsx>{styles}</style>
     </>

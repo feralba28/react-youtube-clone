@@ -157,7 +157,10 @@ function Player({ id }) {
 
         {playerState != PLAYER_STATE.UNSTARTED &&
           playerState != PLAYER_STATE.ENDED && (
-            <div className="overlay" onClick={handleShowControls}></div>
+            <div
+              className="absolute inset-0 w-full m-auto z-10"
+              onClick={handleShowControls}
+            ></div>
           )}
 
         {player && (

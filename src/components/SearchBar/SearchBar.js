@@ -1,35 +1,18 @@
-import { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
-import useFetch from '../../hooks/useFetch'
+import { useRef, useState } from 'react'
+import useSearch from '../../hooks/useSearch'
 
 import Suggestion from '../Suggestion/Suggestion'
-import getSuggestions from '../../requests/getSuggestions'
 
 import Back from '../Icons/Back'
 import Close from '../Icons/Close'
 import Microphone from '../Icons/Microphone'
 import Search from '../Icons/Search'
+
 import styles from './styles'
 
 function SearchBar({ toggleSearchBar }) {
   const [value, setValue] = useState('')
-  const [request, setRequest] = useState(null)
-
-  const router = useRouter()
-
-  const {
-    response: { data: suggestionResponse },
-  } = useFetch(request)
-
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      if (value) {
-        setRequest(getSuggestions({ keyword: value }))
-      }
-    }, 200)
-
-    return () => clearTimeout(timerId)
-  }, [value])
+  const { suggestionResponse, navigate } = useSearch({ keyword: value })
 
   const handleOnChange = (e) => setValue(e.target.value)
 
@@ -38,15 +21,14 @@ function SearchBar({ toggleSearchBar }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (value) {
+      toggleSearchBar()
       navigate(value)
     }
   }
 
-  const handleSuggestionClick = (suggestion) => navigate(suggestion)
-
-  const navigate = (query) => {
+  const handleSuggestionClick = (suggestion) => {
     toggleSearchBar()
-    router.push('/search/' + query)
+    navigate(suggestion)
   }
 
   const inputRef = useRef()
@@ -60,42 +42,45 @@ function SearchBar({ toggleSearchBar }) {
 
   return (
     <>
-      <div className="container p-none overlay" onClick={toggleSearchBar}></div>
-      <div className="container p-none searchbar">
-        <div className="row p-none bg-light border-bottom br-light-grey">
-          <div className="col p-2" onClick={toggleSearchBar}>
-            <Back className="vertical-align-middle" fill="#606060" />
-          </div>
-          <form className="col p-none grow-1 d-flex" onSubmit={handleSubmit}>
+      <div
+        className="w-full h-screen fixed top-0 z-20 bg-black/80 md:hidden"
+        onClick={toggleSearchBar}
+      ></div>
+
+      <div className="fixed top-0 z-30 w-full md:hidden">
+        <div className="flex bg-zinc-100">
+          <button className="p-3" onClick={toggleSearchBar}>
+            <Back fill="#606060" />
+          </button>
+          <form className="grow flex" onSubmit={handleSubmit}>
             <input
               ref={inputRef}
               type="text"
-              className="grow-1"
+              className="grow"
               placeholder={placeHolderText}
               value={value}
               onChange={handleOnChange}
               autoFocus={true}
             />
             {value && (
-              <div className="icon-button" onClick={handleReset}>
-                <Close className="vertical-align-middle" fill="#606060" />
-              </div>
+              <button type='reset' className="py-3 px-2" onClick={handleReset}>
+                <Close fill="#606060" />
+              </button>
             )}
-            <button className="icon-button">
-              <Search className="vertical-align-middle" fill="#606060" />
+            <button type='submit' className="py-3 px-2">
+              <Search fill="#606060" />
             </button>
             {!value && (
-              <div className="icon-button">
-                <Microphone className="vertical-align-middle" fill="#606060" />
-              </div>
+              <button type='button' className="py-3 px-2">
+                <Microphone fill="#606060" />
+              </button>
             )}
           </form>
         </div>
-        {suggestionResponse &&
-          value &&
-          suggestionResponse[1]
-            .slice(0, 10)
-            .map((item, index) => (
+
+        {suggestionResponse && value && (
+          <div className="divide-y divide-zinc-100">
+            {suggestionResponse[1].slice(0, 10).map((item, index) => (
               <Suggestion
                 key={index}
                 item={item[0]}
@@ -103,8 +88,9 @@ function SearchBar({ toggleSearchBar }) {
                 onArrowClick={handleOnArrowClick}
               />
             ))}
+          </div>
+        )}
       </div>
-
       <style jsx>{styles}</style>
     </>
   )

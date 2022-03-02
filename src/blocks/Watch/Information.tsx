@@ -14,20 +14,14 @@ export default function Information(props: {
 
   return (
     <>
-      <div className="row ai-start px-2 pt-2">
-        <div className="col p-none">
-          <h1 className="fs-18 fw-400 color-black line-height-22">
-            {props.title}
-          </h1>
-        </div>
-        <div className="col p-none">
-          <ArrowDown className="vertical-align-middle" />
-        </div>
+      <div className="flex justify-between items-start px-3 pt-3">
+        <h1 className="text-lg text-slate-800">{props.title}</h1>
+        <ArrowDown />
       </div>
-      <div className="row jc-start p-none px-2 fs-12 fw-400">
-        <span className="color-dark-grey">{viewCountText}</span>
-        <span className="color-dark-grey mx-1">•</span>
-        <span className="color-dark-grey">{timeAgo}</span>
+      <div className="flex px-3 text-xs text-slate-600">
+        <span>{viewCountText}</span>
+        <span className="mx-1">•</span>
+        <span>{timeAgo}</span>
       </div>
     </>
   )

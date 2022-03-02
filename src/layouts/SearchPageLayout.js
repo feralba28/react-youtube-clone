@@ -10,12 +10,12 @@ function SearchPageLayout({ children }) {
   const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
 
   return (
-    <div className="container p-none d-flex fd-col min-height-100vh">
+    <div className="flex flex-col h-screen">
       <NavbarSearch toggleSearchBar={toggleSearchBar} />
       {isSearchBar && (
         <SearchBar toggleSearchBar={toggleSearchBar} />
       )}
-      <div className="container p-none grow-1">{children}</div>
+      <div className="grow">{children}</div>
       <BottomNavigation />
     </div>
   )

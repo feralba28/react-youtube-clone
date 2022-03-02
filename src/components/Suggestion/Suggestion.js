@@ -11,13 +11,13 @@ function Suggestion({ item, onSuggestionClick, onArrowClick }) {
   }
 
   return (
-    <div className="row ai-stretch p-none bg-white border-bottom br-light">
-      <div className="grow-1 d-flex ai-center p-1 " onClick={handleSuggestionClick}>
-        <p className="fs-14 fw-500">{item}</p>
+    <div className="h-10 flex items-stretch bg-white hover:bg-zinc-100 hover:cursor-default">
+      <div className="grow flex items-center pl-2" onClick={handleSuggestionClick}>
+        <p className="text-sm font-medium">{item}</p>
       </div>
-      <div className="bg-light p-1" onClick={handleOnArrowClick}>
-        <ArrowTopLeft className="vertical-align-middle" fill="#808080" />
-      </div>
+      <button className="flex items-center bg-zinc-100 p-2 md:hidden" onClick={handleOnArrowClick}>
+        <ArrowTopLeft fill="#808080" />
+      </button>
     </div>
   )
 }

@@ -23,9 +23,9 @@ function Related(props: { id: string }) {
   const followingText = 'Siguiente'
 
   return (
-    <div className="container p-none">
-      <div className="row p-2 py-3">
-        <p className="fs-14 fw-400 color-black">{followingText}</p>
+    <div className="grow px-3">
+      <div className="py-1.5">
+        <p className="text-sm pt-1.5">{followingText}</p>
       </div>
       {relatedResponse &&
         relatedResponse.items.map((item) =>

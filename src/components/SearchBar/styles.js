@@ -1,21 +1,8 @@
 import css from 'styled-jsx/css'
 
 const styles = css`
-  .searchbar {
-    position: fixed;
-    top: 0;
-    z-index: 10;
-  }
-
-  .overlay {
-    position: fixed;
-    top: 0;
-    z-index: 7;
-    min-height: 100vh;
-    background: rgba(0,0,0,0.8)
-  }
-
   input {
+    outline: none;
     background: transparent;
     border: 0;
     font-size: 15px;
@@ -26,11 +13,6 @@ const styles = css`
 
   input:focus {
     border-bottom: 2px solid black;
-    margin: 11px 0px 9px 0px;
-  }
-
-  .icon-button {
-    padding: 12px 8px;
   }
 `
 

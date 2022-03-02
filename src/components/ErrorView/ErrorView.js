@@ -6,10 +6,10 @@ function ErrorView() {
   
   return (
     <>
-      <div className="d-flex fd-col ai-center p-5">
+      <div className="flex flex-col items-center pt-8">
         <Image src="/images/warning.png" width={48} height={48} />
-        <p className="fs-16 color-dark fw-500 pt-1">{errorTitle}</p>
-        <p className="fs-14 pt-2">{errorSubTitle}</p>
+        <p className="text-gray-800 font-medium pt-1.5">{errorTitle}</p>
+        <p className="text-sm pt-3">{errorSubTitle}</p>
       </div>
     </>
   )

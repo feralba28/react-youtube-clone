@@ -13,27 +13,27 @@ export default function ActionBar(props: { likeCount: string }) {
   const reportText = 'Denunciar'
 
   return (
-    <div className="row p-2 jc-evenly">
-      <div className="col p-none d-flex fd-col ai-center">
-        <Like className="vertical-align-middle" />
-        <p className="mt-1 fs-12 fw-500 color-black">{likeCount}</p>
-      </div>
-      <div className="col p-none d-flex fd-col ai-center">
-        <Dislike className="vertical-align-middle" />
-        <p className="mt-1 fs-12 fw-500 color-black">{dislikeText}</p>
-      </div>
-      <div className="col p-none d-flex fd-col ai-center">
-        <Share className="vertical-align-middle" />
-        <p className="mt-1 fs-12 fw-500 color-black">{shareText}</p>
-      </div>
-      <div className="col p-none d-flex fd-col ai-center">
-        <Save className="vertical-align-middle" />
-        <p className="mt-1 fs-12 fw-500 color-black">{saveText}</p>
-      </div>
-      <div className="col p-none d-flex fd-col ai-center">
-        <Report className="vertical-align-middle" />
-        <p className="mt-1 fs-12 fw-500 color-black">{reportText}</p>
-      </div>
+    <div className="flex p-3 justify-evenly">
+      <button className="flex flex-col items-center">
+        <Like />
+        <p className="mt-1.5 text-xs font-medium text-slate-800">{likeCount}</p>
+      </button>
+      <button className="flex flex-col items-center">
+        <Dislike />
+        <p className="mt-1 text-xs font-medium text-slate-800">{dislikeText}</p>
+      </button>
+      <button className="flex flex-col items-center">
+        <Share />
+        <p className="mt-1 text-xs font-medium text-slate-800">{shareText}</p>
+      </button>
+      <button className="flex flex-col items-center">
+        <Save />
+        <p className="mt-1 text-xs font-medium text-slate-800">{saveText}</p>
+      </button>
+      <button className="flex flex-col items-center">
+        <Report />
+        <p className="mt-1 text-xs font-medium text-slate-800">{reportText}</p>
+      </button>
     </div>
   )
 }

@@ -37,34 +37,34 @@ function NavbarSearch({ toggleSearchBar }) {
   return (
     <>
       <div
-        className={`row bg-white p-none border-bottom br-light-grey shadow-m navbar ${
-          isNavbar ? 'visible' : 'hidden'
+        className={`flex items-center bg-white shadow-md sticky top-0 z-10 ${
+          isNavbar ? 'nav-visible' : 'nav-hidden'
         }`}
       >
         <Link href="/">
-          <div className="col px-2">
-            <YouTubeLogo fill="#FF0000" className="vertical-align-middle" />
-          </div>
+          <a className="px-3">
+            <YouTubeLogo fill="#FF0000"/>
+          </a>
         </Link>
-        <div className="col p-none grow-1 bg-light rounded-xs d-flex jc-between ai-center">
+        <div className="grow bg-zinc-100 rounded-sm flex justify-between items-center">
           <div
-            className="padding-search-input grow-1 fs-16 fw-400 color-dark"
+            className="py-1.5 px-3 grow text-sm text-gray-800"
             onClick={toggleSearchBar}
           >
             {query}
           </div>
-          <div className="padding-search-filter">
-            <Filter className="vertical-align-middle" fill="#606060" />
+          <div className="py-1 px-3">
+            <Filter fill="#606060" />
           </div>
         </div>
-        <div className="col p-none pl-2 pr-1 py-1">
-          <div className="d-flex ai-center jc-center microphone-bg bg-light">
-            <Microphone className="vertical-align-middle" fill="#606060" />
+        <button className="pl-3 pr-1.5 py-1.5">
+          <div className="flex items-center justify-center bg-zinc-100 w-8 h-8 rounded-full ">
+            <Microphone fill="#606060" />
           </div>
-        </div>
-        <div className="col p-none pl-1 pr-2 py-2">
-          <Ellipsis className="vertical-align-middle" fill="#606060" />
-        </div>
+        </button>
+        <button className="pl-1.5 pr-3 py-3">
+          <Ellipsis fill="#606060" />
+        </button>
       </div>
 
       <style jsx>{styles}</style>

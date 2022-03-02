@@ -25,34 +25,34 @@ function BottomNavigation() {
     <>
       <footer className="flex bg-white border sticky bottom-0 h-[50px] md:hidden">
         <Link href={routes.home}>
-          <div className="grow flex flex-col items-center p-1">
+          <a className="grow flex flex-col items-center p-1">
             {pathname === routes.home ? (
               <HomeFilled />
             ) : (
               <Home />
             )}
             <p className="text-[11px]">{homeText}</p>
-          </div>
+          </a>
         </Link>
         <Link href={routes.explore}>
-          <div className="grow flex flex-col items-center p-1">
+          <a className="grow flex flex-col items-center p-1">
             {pathname === routes.explore ? (
               <ExploreFilled />
             ) : (
               <Explore />
             )}
             <p className="text-[11px]">{exploreText}</p>
-          </div>
+          </a>
         </Link>
         <Link href={routes.library}>
-          <div className="grow flex flex-col items-center p-1">
+          <a className="grow flex flex-col items-center p-1">
             {pathname === routes.library ? (
               <LibraryFilled />
             ) : (
               <Library />
             )}
             <p className="text-[11px]">{libraryText}</p>
-          </div>
+          </a>
         </Link>
       </footer>
     </>

@@ -9,9 +9,9 @@ function FixedNavbar({ toggleSearchBar }) {
     <>
       <div className="flex justify-between bg-zinc-800">
         <Link href="/">
-          <div className="p-3">
+          <a className="p-3">
             <YouTube fill="white" />
-          </div>
+          </a>
         </Link>
         <div className="flex">
           <button className="p-3" onClick={toggleSearchBar}>

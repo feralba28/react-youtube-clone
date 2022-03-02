@@ -42,9 +42,9 @@ function NavbarSearch({ toggleSearchBar }) {
         }`}
       >
         <Link href="/">
-          <div className="px-3">
+          <a className="px-3">
             <YouTubeLogo fill="#FF0000"/>
-          </div>
+          </a>
         </Link>
         <div className="grow bg-zinc-100 rounded-sm flex justify-between items-center">
           <div

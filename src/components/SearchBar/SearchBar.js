@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
-import useFetch from '../../hooks/useFetch'
+import { useRef, useState } from 'react'
+import useSearch from '../../hooks/useSearch'
 
 import Suggestion from '../Suggestion/Suggestion'
-import getSuggestions from '../../requests/getSuggestions'
 
 import Back from '../Icons/Back'
 import Close from '../Icons/Close'
@@ -14,23 +12,7 @@ import styles from './styles'
 
 function SearchBar({ toggleSearchBar }) {
   const [value, setValue] = useState('')
-  const [request, setRequest] = useState(null)
-
-  const router = useRouter()
-
-  const {
-    response: { data: suggestionResponse },
-  } = useFetch(request)
-
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      if (value) {
-        setRequest(getSuggestions({ keyword: value }))
-      }
-    }, 200)
-
-    return () => clearTimeout(timerId)
-  }, [value])
+  const { suggestionResponse, navigate } = useSearch({ keyword: value })
 
   const handleOnChange = (e) => setValue(e.target.value)
 
@@ -39,15 +21,14 @@ function SearchBar({ toggleSearchBar }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (value) {
+      toggleSearchBar()
       navigate(value)
     }
   }
 
-  const handleSuggestionClick = (suggestion) => navigate(suggestion)
-
-  const navigate = (query) => {
+  const handleSuggestionClick = (suggestion) => {
     toggleSearchBar()
-    router.push('/search/' + query)
+    navigate(suggestion)
   }
 
   const inputRef = useRef()
@@ -82,15 +63,15 @@ function SearchBar({ toggleSearchBar }) {
               autoFocus={true}
             />
             {value && (
-              <button className="py-3 px-2" onClick={handleReset}>
+              <button type='reset' className="py-3 px-2" onClick={handleReset}>
                 <Close fill="#606060" />
               </button>
             )}
-            <button className="py-3 px-2">
+            <button type='submit' className="py-3 px-2">
               <Search fill="#606060" />
             </button>
             {!value && (
-              <button className="py-3 px-2">
+              <button type='button' className="py-3 px-2">
                 <Microphone fill="#606060" />
               </button>
             )}

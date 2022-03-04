@@ -5,7 +5,7 @@ import useFetch from './useFetch'
 
 import getSuggestions from '../requests/getSuggestions'
 
-export default function useSearch(props: { keyword: string }): {
+export default function useAutocomplete(props: { keyword: string }): {
   suggestionResponse: Array<any> | null
   navigate: (query: string) => void
 } {

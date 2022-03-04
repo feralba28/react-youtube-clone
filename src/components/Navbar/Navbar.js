@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import Link from 'next/link'
-import useSearch from '../../hooks/useSearch'
+import useAutocomplete from '../../hooks/useAutocomplete'
 import useScroll from '../../hooks/useScroll'
 
 import SearchBar from '../SearchBar/SearchBar'
@@ -24,7 +24,7 @@ function Navbar({ toggleSidebar }) {
   const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
 
   const [inputValue, setInputValue] = useState('')
-  const { suggestionResponse, navigate } = useSearch({ keyword: inputValue })
+  const { suggestionResponse, navigate } = useAutocomplete({ keyword: inputValue })
 
   const handleOnchange = (e) => setInputValue(e.target.value)
   const handleOnSuggestionClick = (suggestion) => navigate(suggestion)

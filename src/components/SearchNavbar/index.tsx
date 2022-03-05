@@ -18,7 +18,10 @@ import YouTubeLogo from '../Icons/YouTubeLogo'
 
 import styles from './styles'
 
-function NavbarSearch({ toggleSidebar }) {
+export default function SearchNavbar(props: {
+  toggleSidebar: () => void
+}): JSX.Element {
+  const { toggleSidebar } = props
   const { isActive } = useScroll()
   const {
     query: { query },
@@ -79,7 +82,7 @@ function NavbarSearch({ toggleSidebar }) {
           </button>
         </div>
 
-        <SearchForm query={query} />
+        <SearchForm query={query as string} />
 
         <div className="hidden md:flex items-center gap-2">
           <button className="flex p-2">
@@ -102,5 +105,3 @@ function NavbarSearch({ toggleSidebar }) {
     </>
   )
 }
-
-export default NavbarSearch

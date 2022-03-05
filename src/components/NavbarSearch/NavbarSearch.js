@@ -1,71 +1,102 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import useScroll from '../../hooks/useScroll'
+
+import Button from '../Button'
+import SearchBar from '../SearchBar/SearchBar'
+import SearchForm from '../SearchForm'
 
 import Ellipsis from '../Icons/Ellipsis'
 import Filter from '../Icons/Filter'
+import Menu from '../Icons/Menu'
+import MenuGrid from '../Icons/MenuGrid'
 import Microphone from '../Icons/Microphone'
+import User from '../Icons/User'
+import YouTube from '../Icons/YouTube'
 import YouTubeLogo from '../Icons/YouTubeLogo'
+
 import styles from './styles'
 
-function NavbarSearch({ toggleSearchBar }) {
+function NavbarSearch({ toggleSidebar }) {
+  const { isActive } = useScroll()
   const {
     query: { query },
   } = useRouter()
 
-  const [isNavbar, setIsNavbar] = useState(true)
-  const [oldScrollY, setOldScrollY] = useState(0)
+  const [isSearchBar, setIsSearchBar] = useState(false)
+  const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const newScrollY = window.scrollY
-
-      if (oldScrollY <= newScrollY) {
-        newScrollY >= 100 ? setIsNavbar(false) : setIsNavbar(true)
-      } else {
-        setIsNavbar(true)
-      }
-
-      setOldScrollY(newScrollY)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [oldScrollY])
+  const loginButtonText = 'Acceder'
 
   return (
     <>
-      <div
-        className={`flex items-center bg-white shadow-md sticky top-0 z-10 ${
-          isNavbar ? 'nav-visible' : 'nav-hidden'
-        }`}
+      <nav
+        className={`flex items-center bg-white h-12 sticky top-0 shadow-md z-10 ${
+          isActive ? 'nav-visible' : 'nav-hidden'
+        } md:col-span-2 md:shadow-none md:h-[56px] md:px-4 md:justify-between md:gap-4`}
       >
-        <Link href="/">
-          <a className="px-3">
-            <YouTubeLogo fill="#FF0000"/>
-          </a>
-        </Link>
-        <div className="grow bg-zinc-100 rounded-sm flex justify-between items-center">
-          <div
-            className="py-1.5 px-3 grow text-sm text-gray-800"
-            onClick={toggleSearchBar}
+        <div className="flex items-center gap-4">
+          <button
+            className="p-2 bg-white sticky top-0 z-10 hidden md:flex"
+            onClick={toggleSidebar}
           >
-            {query}
-          </div>
-          <div className="py-1 px-3">
-            <Filter fill="#606060" />
-          </div>
+            <Menu stroke="#303030" />
+          </button>
+
+          <Link href="/">
+            <a className="px-3 md:hidden">
+              <YouTubeLogo fill="#FF0000" />
+            </a>
+          </Link>
+
+          <Link href="/">
+            <a className="hidden p-3 md:py-3 md:px-0 md:inline-block">
+              <YouTube />
+            </a>
+          </Link>
         </div>
-        <button className="pl-3 pr-1.5 py-1.5">
-          <div className="flex items-center justify-center bg-zinc-100 w-8 h-8 rounded-full ">
-            <Microphone fill="#606060" />
+
+        <div className="grow flex items-center gap-3 mr-1.5 md:hidden">
+          <div className="grow bg-zinc-100 rounded-sm flex justify-between items-center">
+            <div
+              className="py-1.5 px-3 grow text-sm text-gray-800"
+              onClick={toggleSearchBar}
+            >
+              {query}
+            </div>
+            <div className="py-1 px-3">
+              <Filter fill="#606060" />
+            </div>
           </div>
-        </button>
-        <button className="pl-1.5 pr-3 py-3">
-          <Ellipsis fill="#606060" />
-        </button>
-      </div>
+          <button className="">
+            <div className="flex items-center justify-center bg-zinc-100 w-8 h-8 rounded-full ">
+              <Microphone fill="#606060" />
+            </div>
+          </button>
+          <button className="p-1">
+            <Ellipsis fill="#606060" />
+          </button>
+        </div>
+
+        <SearchForm query={query} />
+
+        <div className="hidden md:flex items-center gap-2">
+          <button className="flex p-2">
+            <MenuGrid fill="#606060" />
+          </button>
+          <button className="flex p-2">
+            <Ellipsis fill="#606060" />
+          </button>
+          <Button
+            icon={<User fill="#2563eb" />}
+            text={loginButtonText}
+            className="w-[120px] h-[40px]"
+          />
+        </div>
+      </nav>
+
+      {isSearchBar && <SearchBar toggleSearchBar={toggleSearchBar} />}
 
       <style jsx>{styles}</style>
     </>

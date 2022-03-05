@@ -1,22 +1,19 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import useAutocomplete from '../../hooks/useAutocomplete'
 import useScroll from '../../hooks/useScroll'
 
-import SearchBar from '../SearchBar/SearchBar'
-import Suggestion from '../Suggestion/Suggestion'
 import Button from '../Button'
+import SearchBar from '../SearchBar/SearchBar'
+import SearchForm from '../SearchForm'
 
 import Ellipsis from '../Icons/Ellipsis'
 import Menu from '../Icons/Menu'
 import MenuGrid from '../Icons/MenuGrid'
-import MicrophoneFilled from '../Icons/MicrophoneFilled'
 import Search from '../Icons/Search'
 import User from '../Icons/User'
 import YouTube from '../Icons/YouTube'
 
 import styles from './styles'
-import SearchForm from '../SearchForm'
 
 function Navbar({ toggleSidebar }) {
   const { isActive } = useScroll()
@@ -24,21 +21,7 @@ function Navbar({ toggleSidebar }) {
   const [isSearchBar, setIsSearchBar] = useState(false)
   const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
 
-  const [inputValue, setInputValue] = useState('')
-  const { suggestions, navigate } = useAutocomplete({ keyword: inputValue })
-
-  const handleOnchange = (e) => setInputValue(e.target.value)
-  const handleOnSuggestionClick = (suggestion) => navigate(suggestion)
-
-  const inputRef = useRef()
-
-  const handleOnSubmit = (e) => {
-    e.preventDefault()
-    navigate(inputValue)
-  }
-
   const loginButtonText = 'Acceder'
-  const placeHolderText = 'Buscar'
 
   return (
     <>

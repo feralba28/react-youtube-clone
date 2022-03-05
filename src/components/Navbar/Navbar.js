@@ -24,7 +24,7 @@ function Navbar({ toggleSidebar }) {
   const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
 
   const [inputValue, setInputValue] = useState('')
-  const { suggestionResponse, navigate } = useAutocomplete({ keyword: inputValue })
+  const { suggestions, navigate } = useAutocomplete({ keyword: inputValue })
 
   const handleOnchange = (e) => setInputValue(e.target.value)
   const handleOnSuggestionClick = (suggestion) => navigate(suggestion)
@@ -84,12 +84,12 @@ function Navbar({ toggleSidebar }) {
                 value={inputValue}
                 onChange={handleOnchange}
               />
-              {suggestionResponse && inputValue && (
+              {suggestions && inputValue && (
                 <div className="absolute top-0 translate-y-[40px] w-full border shadow-lg divide-y divide-zinc-100">
-                  {suggestionResponse[1].slice(0, 10).map((item, index) => (
+                  {suggestions.map((item, index) => (
                     <Suggestion
                       key={index}
-                      item={item[0]}
+                      item={item}
                       onSuggestionClick={handleOnSuggestionClick}
                     />
                   ))}

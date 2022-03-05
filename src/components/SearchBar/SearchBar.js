@@ -12,7 +12,7 @@ import styles from './styles'
 
 function SearchBar({ toggleSearchBar }) {
   const [value, setValue] = useState('')
-  const { suggestionResponse, navigate } = useAutocomplete({ keyword: value })
+  const { suggestions, navigate } = useAutocomplete({ keyword: value })
 
   const handleOnChange = (e) => setValue(e.target.value)
 
@@ -78,12 +78,12 @@ function SearchBar({ toggleSearchBar }) {
           </form>
         </div>
 
-        {suggestionResponse && value && (
+        {suggestions && value && (
           <div className="divide-y divide-zinc-100">
-            {suggestionResponse[1].slice(0, 10).map((item, index) => (
+            {suggestions.map((item, index) => (
               <Suggestion
                 key={index}
-                item={item[0]}
+                item={item}
                 onSuggestionClick={handleSuggestionClick}
                 onArrowClick={handleOnArrowClick}
               />

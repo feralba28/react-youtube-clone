@@ -16,6 +16,7 @@ import User from '../Icons/User'
 import YouTube from '../Icons/YouTube'
 
 import styles from './styles'
+import SearchForm from '../SearchForm'
 
 function Navbar({ toggleSidebar }) {
   const { isActive } = useScroll()
@@ -70,40 +71,7 @@ function Navbar({ toggleSidebar }) {
           </button>
         </div>
 
-        <div className="hidden md:flex items-center gap-2 grow ml-10 max-w-3xl">
-          <form
-            className="grow flex items-stretch border border-gray-300 rounded-sm divide-x divide-gray-300"
-            onSubmit={handleOnSubmit}
-          >
-            <div className="relative grow flex items-stretch">
-              <input
-                ref={inputRef}
-                type="search"
-                className="grow outline-none px-3 rounded-l-sm focus:border focus:border-blue-700 focus:px-[11px]"
-                placeholder={placeHolderText}
-                value={inputValue}
-                onChange={handleOnchange}
-              />
-              {suggestions && inputValue && (
-                <div className="absolute top-0 translate-y-[40px] w-full border shadow-lg divide-y divide-zinc-100">
-                  {suggestions.map((item, index) => (
-                    <Suggestion
-                      key={index}
-                      item={item}
-                      onSuggestionClick={handleOnSuggestionClick}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-            <button className="w-16 h-10 bg-zinc-100 flex items-center justify-center rounded-r-sm">
-              <Search fill="#303030" />
-            </button>
-          </form>
-          <button className="flex items-center justify-center bg-zinc-100 w-10 h-10 rounded-full">
-            <MicrophoneFilled />
-          </button>
-        </div>
+        <SearchForm />
 
         <div className="hidden md:flex items-center gap-2">
           <button className="flex p-2">

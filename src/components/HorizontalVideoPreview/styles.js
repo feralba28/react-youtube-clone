@@ -28,7 +28,6 @@ const styles = css`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 18px;
   }
 `
 

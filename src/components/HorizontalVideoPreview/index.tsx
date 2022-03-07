@@ -3,7 +3,6 @@ import { DateTime } from 'luxon'
 
 import Ellipsis from '../Icons/Ellipsis'
 import styles from './styles'
-
 import VideoPreviewItem from '../../types/VideoPreviewItem'
 
 function VideoPreview(props: { item: VideoPreviewItem }) {
@@ -15,7 +14,7 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
   return (
     <>
       <Link href={`/watch/${item.id.videoId}`}>
-        <div className="flex px-3 items-start mt-3">
+        <a className="flex items-start">
           <div className="w-5/12">
             <div className="preview-img-container">
               <img
@@ -27,19 +26,19 @@ function VideoPreview(props: { item: VideoPreviewItem }) {
           </div>
           <div className="w-7/12 pl-3 flex items-start">
             <div className="grow">
-              <p className="text-sm text-gray-800 preview-title">
+              <p className="text-sm text-gray-800 leading-4 preview-title md:text-lg md:leading-6">
                 {item.snippet.title}
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-500 md:leading-5">
                 {item.snippet.channelTitle}
               </p>
-              <p className="text-xs text-gray-500">{timeAgo}</p>
+              <p className="text-xs text-gray-500 md:leading-5">{timeAgo}</p>
             </div>
             <div className="p-1.5">
               <Ellipsis fill="#6B7280" />
             </div>
           </div>
-        </div>
+        </a>
       </Link>
 
       <style jsx>{styles}</style>

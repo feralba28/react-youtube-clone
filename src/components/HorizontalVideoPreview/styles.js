@@ -8,7 +8,6 @@ const styles = css`
     left: 0;
     right: 0;
     padding-bottom: 56.25%;
-    margin: auto;
     overflow: hidden;
   }
 

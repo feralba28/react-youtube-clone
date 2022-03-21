@@ -14,11 +14,11 @@ export default function Information(props: {
 
   return (
     <>
-      <div className="flex justify-between items-start px-3 pt-3">
+      <div className="flex justify-between items-start md:w-full">
         <h1 className="text-lg text-slate-800">{props.title}</h1>
-        <ArrowDown />
+        <ArrowDown className="md:hidden" />
       </div>
-      <div className="flex px-3 text-xs text-slate-600">
+      <div className="flex text-xs text-slate-600 md:text-sm pr-2">
         <span>{viewCountText}</span>
         <span className="mx-1">•</span>
         <span>{timeAgo}</span>

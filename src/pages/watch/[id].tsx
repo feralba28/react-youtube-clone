@@ -1,12 +1,8 @@
-import { useState } from 'react'
-import { NextPageContext } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import axios from 'axios'
 
-import WatchNavbar from '../../components/WatchNavbar/WatchNavbar'
-import SearchBar from '../../components/SearchBar/SearchBar'
-import Player from '../../components/Player/Player'
-
+import WatchPageLayout from '../../layouts/WatchPageLayout'
 import Related from '../../blocks/Watch/Related'
 import Information from '../../blocks/Watch/Information'
 import ActionBar from '../../blocks/Watch/ActionBar'
@@ -16,12 +12,10 @@ import Comments from '../../blocks/Watch/Comments'
 import getVideos from '../../requests/getVideos'
 import VideoDetail from '../../types/VideoDetail'
 
-function Watch<NextPage>(props: { item: VideoDetail }) {
+function Watch(props: { item: VideoDetail }) {
   const { item } = props
 
-  const [isSearchBar, setIsSearchBar] = useState(false)
-
-  const toggleSearchBar = () => setIsSearchBar(!isSearchBar)
+  const videoSrc = `https://www.youtube.com/embed/${item.id}`
 
   return (
     <>
@@ -29,41 +23,43 @@ function Watch<NextPage>(props: { item: VideoDetail }) {
         <title>{item.snippet.title}</title>
       </Head>
 
-      <div className="flex flex-col divide-y">
-        <div className="flex flex-col sticky top-0 z-10">
-          <div>
-            <WatchNavbar toggleSearchBar={toggleSearchBar} />
-            {isSearchBar && <SearchBar toggleSearchBar={toggleSearchBar} />}
-          </div>
-          <Player id={item.id} />
-        </div>
-
-        <div className="divide-y">
-          <div>
-            <Information
-              title={item.snippet.title}
-              viewCount={item.statistics.viewCount}
-              publishedAt={item.snippet.publishedAt}
-            />
-
-            <ActionBar likeCount={item.statistics.likeCount} />
+      <WatchPageLayout>
+        <div className="md:p-4 lg:grid lg:grid-cols-3 gap-x-6 lg:max-w-[1360px] lg:mx-auto">
+          <div className="sticky top-12 md:static flex justify-center col-span-2 order-1">
+            <iframe
+              src={videoSrc}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              className="w-full aspect-video sm:aspect-[28/12] md:aspect-video"
+            ></iframe>
           </div>
 
-          <Channel title={item.snippet.channelTitle} />
+          <div className="divide-y col-span-2 order-3">
+            <div className="flex flex-col p-3 md:flex-row md:flex-wrap md:items-center md:justify-between md:p-0 md:pt-4 md:pb-3 lg:gap-1">
+              <Information
+                title={item.snippet.title}
+                viewCount={item.statistics.viewCount}
+                publishedAt={item.snippet.publishedAt}
+              />
 
-          <Comments commentCount={item.statistics.commentCount} />
+              <ActionBar likeCount={item.statistics.likeCount} />
+            </div>
+
+            <Channel title={item.snippet.channelTitle} />
+
+            <Comments commentCount={item.statistics.commentCount} />
+          </div>
+
+          <Related id={item.id} />
         </div>
-
-        <Related id={item.id} />
-      </div>
+      </WatchPageLayout>
     </>
   )
 }
 
-export default Watch
-
-Watch.getInitialProps = async (ctx: NextPageContext) => {
-  const { id } = ctx.query
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.query
 
   const item = await axios
     .request(getVideos({ id: id as string }))
@@ -75,6 +71,10 @@ Watch.getInitialProps = async (ctx: NextPageContext) => {
     })
 
   return {
-    item: item,
+    props: {
+      item: item,
+    },
   }
 }
+
+export default Watch

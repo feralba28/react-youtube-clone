@@ -36,7 +36,7 @@ function Home() {
       </Head>
 
       <WebsiteLayout>
-        <div className='py-2 grid gap-4 grid-cols-1 sm:grid-cols-2 sm:p-4 md:grid-cols-3 xl:grid-cols-4 xl:p-5'>
+        <div className='py-2 grid gap-4 grid-cols-1 sm:grid-cols-2 sm:p-4 md:grid-cols-3 xl:grid-cols-4 xl:p-5 lg:max-w-screen-2xl lg:mx-auto'>
           {isLoading &&
             [1, 2, 3, 4, 5, 6].map((i) => (
               <div className="flex" key={i}>

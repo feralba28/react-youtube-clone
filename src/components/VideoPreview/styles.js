@@ -9,7 +9,6 @@ const styles = css`
     right: 0;
     width: 100%;
     padding-bottom: 56.25%;
-    margin: auto;
     overflow: hidden;
   }
 

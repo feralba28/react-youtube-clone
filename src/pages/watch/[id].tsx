@@ -1,4 +1,4 @@
-import { NextPageContext } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import axios from 'axios'
 
@@ -12,7 +12,7 @@ import Comments from '../../blocks/Watch/Comments'
 import getVideos from '../../requests/getVideos'
 import VideoDetail from '../../types/VideoDetail'
 
-function Watch<NextPage>(props: { item: VideoDetail }) {
+function Watch(props: { item: VideoDetail }) {
   const { item } = props
 
   const videoSrc = `https://www.youtube.com/embed/${item.id}`
@@ -58,10 +58,8 @@ function Watch<NextPage>(props: { item: VideoDetail }) {
   )
 }
 
-export default Watch
-
-Watch.getInitialProps = async (ctx: NextPageContext) => {
-  const { id } = ctx.query
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.query
 
   const item = await axios
     .request(getVideos({ id: id as string }))
@@ -73,6 +71,10 @@ Watch.getInitialProps = async (ctx: NextPageContext) => {
     })
 
   return {
-    item: item,
+    props: {
+      item: item,
+    },
   }
 }
+
+export default Watch

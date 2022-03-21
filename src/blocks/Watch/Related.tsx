@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch'
 import getRelated from '../../requests/getRelated'
 
 import SearchResponse from '../../types/SearchResponse'
-import VideoPreview from '../../components/VideoPreview/VideoPreview'
+import RelatedItem from '../../components/RelatedItem'
 
 function Related(props: { id: string }) {
   const { id } = props
@@ -23,14 +23,14 @@ function Related(props: { id: string }) {
   const followingText = 'Siguiente'
 
   return (
-    <div className="grow px-3">
-      <div className="py-1.5">
-        <p className="text-sm pt-1.5">{followingText}</p>
+    <div className="grow px-3 flex flex-col gap-3 order-2 border-t md:px-0 lg:border-0">
+      <div className="lg:hidden">
+        <p className="text-sm pt-3">{followingText}</p>
       </div>
       {relatedResponse &&
         relatedResponse.items.map((item) =>
           item.snippet ? (
-            <VideoPreview item={item} key={item.id.videoId} />
+            <RelatedItem item={item} key={item.id.videoId} />
           ) : null
         )}
     </div>

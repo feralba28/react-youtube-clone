@@ -13,24 +13,32 @@ export default function ActionBar(props: { likeCount: string }) {
   const reportText = 'Denunciar'
 
   return (
-    <div className="flex p-3 justify-evenly">
-      <button className="flex flex-col items-center">
+    <div className="mt-3 flex justify-evenly gap-4 md:m-0">
+      <button className="flex flex-col items-center md:flex-row md:gap-1">
         <Like />
-        <p className="mt-1.5 text-xs font-medium text-slate-800">{likeCount}</p>
+        <p className="mt-1.5 text-xs font-medium text-slate-800 md:m-0 md:text-sm md:font-medium md:uppercase">
+          {likeCount}
+        </p>
       </button>
-      <button className="flex flex-col items-center">
+      <button className="flex flex-col items-center md:flex-row md:gap-1">
         <Dislike />
-        <p className="mt-1 text-xs font-medium text-slate-800">{dislikeText}</p>
+        <p className="mt-1 text-xs font-medium text-slate-800 md:m-0 md:text-sm md:font-medium md:uppercase">
+          {dislikeText}
+        </p>
       </button>
-      <button className="flex flex-col items-center">
+      <button className="flex flex-col items-center md:flex-row md:gap-1">
         <Share />
-        <p className="mt-1 text-xs font-medium text-slate-800">{shareText}</p>
+        <p className="mt-1 text-xs font-medium text-slate-800 md:m-0 md:text-sm md:font-medium md:uppercase">
+          {shareText}
+        </p>
       </button>
-      <button className="flex flex-col items-center">
+      <button className="flex flex-col items-center md:flex-row md:gap-1">
         <Save />
-        <p className="mt-1 text-xs font-medium text-slate-800">{saveText}</p>
+        <p className="mt-1 text-xs font-medium text-slate-800 md:m-0 md:text-sm md:font-medium md:uppercase">
+          {saveText}
+        </p>
       </button>
-      <button className="flex flex-col items-center">
+      <button className="flex flex-col items-center md:hidden">
         <Report />
         <p className="mt-1 text-xs font-medium text-slate-800">{reportText}</p>
       </button>
